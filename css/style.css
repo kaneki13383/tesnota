@@ -1,0 +1,31 @@
+.nav-link{
+    margin-left: 1.5vw;
+}
+.nav-link:hover{
+    border-bottom: 2px solid #AF3131;
+}
+.search{
+    background-color: transparent;
+    border: #AF3131 2px solid;
+    border-radius: 0;
+}
+.btn{
+    background-color: transparent;
+    border: #AF3131 2px solid;
+    border-radius: 0;
+}
+.btn:hover{
+    background-color: #AF3131;
+    border-color: #AF3131;
+}
+.search-logo{
+    background: transparent;
+    z-index: -1;
+}
+.modal-content{
+    color: white;
+}
+.section1{
+    background-image: url(../images/background-img.png);
+    height: 100vh;
+}
