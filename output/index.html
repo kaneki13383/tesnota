@@ -48,14 +48,25 @@
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content bg-dark">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalToggleLabel">Модалка 1</h5>
+              <h5 class="modal-title" id="exampleModalToggleLabel">Войти в аккаунт</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              Покажите второе модальное окно и скройте его с помощью кнопки ниже.
+              <form>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Ваш email</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Пароль</label>
+                  <input type="password" class="form-control" id="exampleInputPassword1">
+                </div>
+                <button type="submit" class="btn btn-primary">Войти</button>
+              </form>
             </div>
             <div class="modal-footer">
-              <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Открыть второе модальное окно</button>
+              <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Нет аккаунта? Зарегистрируйтесь!</button>
             </div>
           </div>
         </div>
@@ -64,14 +75,50 @@
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content bg-dark">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalToggleLabel2">Модалка 2</h5>
+              <h5 class="modal-title" id="exampleModalToggleLabel2">Регистрация</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              Скройте это модальное окно и покажите первое с помощью кнопки ниже.
+              <form method="post" enctype="multipart/form-data" action="./php/functions/singup.php">
+                <div class="row mb-3">
+                  <label for="inputEmail3" class="col-sm-2 col-form-label">ФИО</label>
+                  <div class="col-sm-10">
+                    <input type="text" name="full_name" class="form-control" id="inputNamel3">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputEmail3" class="col-sm-2 col-form-label">Логин</label>
+                  <div class="col-sm-10">
+                    <input type="text" name="login" class="form-control" id="inputNamel3">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputEmail3" class="col-sm-2 col-form-label">Почта</label>
+                  <div class="col-sm-10">
+                    <input type="email" name="email" class="form-control" id="inputEmaill3">
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="formFile" class="form-label">Выберите аватар</label>
+                  <input class="form-control" name="avatar" type="file" id="formFile">
+                </div>
+                <div class="row mb-3">
+                  <label for="inputPassword3" class="col-sm-2 col-form-label">Пароль</label>
+                  <div class="col-sm-10">
+                    <input type="password" name="password" class="form-control" id="inputPassword3">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputPassword3" class="col-sm-2 col-form-label">Повторите пароль</label>
+                  <div class="col-sm-10">
+                    <input type="password" name="password_confirm" class="form-control" id="inputPassword3">
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-sing-in-2">Зарегистрироваться</button>
+              </form>
             </div>
             <div class="modal-footer">
-              <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal">Вернуться к первому</button>
+              <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal">Уже есть аккаунт? Войдите в него!</button>
             </div>
           </div>
         </div>

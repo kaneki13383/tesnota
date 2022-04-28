@@ -29,3 +29,13 @@
     background-image: url(../images/background-img.png);
     height: 100vh;
 }
+.form-control{
+    background-color: transparent;
+    border: #AF3131 2px solid;
+}
+.modal-header{
+    border-bottom: #AF3131 1px solid;
+}
+.modal-footer{
+    border-top: #AF3131 1px solid;
+}
