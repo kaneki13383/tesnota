@@ -36,7 +36,11 @@
 }
 .form-control{
     background-color: transparent;
+    color: white;
     border: #AF3131 2px solid;
+}
+.btn-close{
+    background: url(../images/close.png);
 }
 .modal-header{
     border-bottom: #AF3131 1px solid;
