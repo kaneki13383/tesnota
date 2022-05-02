@@ -1,3 +1,6 @@
+<?php
+  session_start();
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -10,7 +13,7 @@
 </head>
 <body class="bg-dark">
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container">
               <a class="navbar-brand" href="#">
                   <img src="../images/logo.png" class="img-fluid" style="width: 200px;" alt="">
@@ -32,9 +35,9 @@
                 </ul>
                 <form class="d-flex">
                     <input class="form-control me-2 search" type="search" placeholder="Поиск" aria-label="Поиск">
-                    <button class="search-logo" type="submit"><img src="../images/search.png" alt=""></button>
+                    <button class="btn search-logo" type="submit"><img src="../images/search.png" alt=""></button>
                 </form>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalToggle">
+                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModalToggle">
                     Войти
                 </button>
               </div>
@@ -51,21 +54,27 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <form>  <!---------------------------------------------------------------------------------------------------------->
+              <form id="formlogin" method="POST" action="../functions/login.php">  <!---------------------------------------------------------------------------------------------------------->
                 <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label">Ваш email</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                   <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
                 </div>
                 <div class="mb-3">
                   <label for="exampleInputPassword1" class="form-label">Пароль</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1">
+                  <input type="password" name="password" class="form-control" id="exampleInputPassword1">
                 </div>
-                <button type="submit" class="btn btn-primary">Войти</button>
+                <input type="submit" class="btn" value="Войти">
+                <?php 
+                        if ($_SESSION['message']){
+                            echo '<div class="alert alert-danger">' . $_SESSION['message'] . '</div>';
+                        }
+                        unset($_SESSION['message']);
+                    ?>
               </form> <!---------------------------------------------------------------------------------------------------------->
             </div>
             <div class="modal-footer">
-              <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Нет аккаунта? Зарегистрируйтесь!</button>
+              <button class="btn" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Нет аккаунта? Зарегистрируйтесь!</button>
             </div>
           </div>
         </div>
@@ -114,7 +123,7 @@
                     <input type="password" name="password_confirm" class="form-control" id="inputPassword3">
                   </div>
                 </div>
-                <button type="submit" class="btn btn-primary btn-sing-in-2">Зарегистрироваться</button>
+                <button type="submit" class="btn btn-sing-in-2">Зарегистрироваться</button>
                 <?php 
                         if ($_SESSION['message']){
                             echo '<p class="message">' . $_SESSION['message'] . '</p>';
@@ -125,7 +134,7 @@
               <!---------------------------------------------------------------------------------------------------------->
             </div>
             <div class="modal-footer">
-              <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal">Уже есть аккаунт? Войдите в него!</button>
+              <button class="btn" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal">Уже есть аккаунт? Войдите в него!</button>
             </div>
           </div>
         </div>
@@ -145,6 +154,25 @@
           </div>
         </div>
       </section>
+
+      <section class="about_company">
+        <div class="container">
+            <h2>О компании</h2>
+          <div class="d-flex"> 
+            <img src="../images/image 11.png" alt="" width="150px" class="img-fluid">
+            <p>Наше кафе является один из самых лучших в городе, у нас постоянно пополняется каталог товаров, у нас приятная музыка и астомсфера.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="popular">
+        <div class="container">
+          <h2>Популярные товары</h2>
+        </div>
+      </section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <script src="../js/login.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
