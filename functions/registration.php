@@ -26,7 +26,7 @@
                 header('Location: ../output/registration.php'); 
             }
             else{
-                $add_user = $connect->prepare("INSERT INTO `users`(`id`, `login`, `email`, `avatar`, `password`) VALUES (NULL,'$login','$email','$avatar','$password')");
+                $add_user = $connect->prepare("INSERT INTO `users`(`id`, `full_name`, `login`, `email`, `avatar`, `password`) VALUES (NULL, '$full_name','$login','$email','$avatar','$password')");
                 $add_user->execute();
                 $_SESSION['message'] = "Регистрация прошла успешно!";
                 header('Location: ../output/index.php');

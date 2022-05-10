@@ -39,6 +39,12 @@
     background-size: 100%;
     height: 100vh;
 }
+.div-sec-1{
+    margin-top: 12vw;
+}
+.image-big-picture{
+    width: 24vw;
+}
 .form-control{
     background-color: transparent;
     color: white;
@@ -76,6 +82,60 @@ h2{
     margin-top: 8vw;
     margin-bottom: 4vw;
 }
-.about_company p{
-    font-size: 25px;
+.figure-caption{
+    font-size: 20px;
+    color: white;
+}
+.pop-flex{
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+.accordion-header{
+    margin: 0;
+}
+.accordion-button{
+    background-color: #212529;
+    color: white;
+    box-shadow: none;
+}
+.accordion-button:not(.collapsed) {
+    color: white;
+    background-color: #212529;
+    box-shadow: none;
+}
+.accordion-collapse{
+    background-color: #212529;
+    color: white;
+}
+.accordion-item{
+    border-color: #AF3131;
+    background-color: #AF3131;
+}
+.accordion-button:focus{
+    box-shadow: none;
+    border-color: transparent;
+}
+form{
+    color: white;
+}
+textarea{
+    resize: none;
+}
+.back_to_top{
+    position: fixed;
+    border: #AF3131 2px solid;
+    border-radius: 50%;
+    color: white;
+    font-size: 2vw;
+    text-decoration: none;
+    padding: 0px 1.2vw;
+    padding-bottom: 5px;
+    margin-top: 90vh;
+    cursor: pointer;
+    display: none;
+    margin-left: 94vw;
+}
+.back_to_top-show {
+    display: block;
 }
