@@ -36,11 +36,12 @@
 .section1{
     background-image: url(../images/background-img.png);
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: cover;
     height: 100vh;
 }
 .div-sec-1{
-    margin-top: 12vw;
+    position: relative;
+    top: 30vh;
 }
 .image-big-picture{
     width: 24vw;
@@ -90,6 +91,7 @@ h2{
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+
 }
 .accordion-header{
     margin: 0;
@@ -105,7 +107,7 @@ h2{
     box-shadow: none;
 }
 .accordion-collapse{
-    background-color: #212529;
+    background-color: #212529e7;
     color: white;
 }
 .accordion-item{
@@ -122,20 +124,17 @@ form{
 textarea{
     resize: none;
 }
-.back_to_top{
+#btt{
     position: fixed;
+    background-color: #212529;
     border: #AF3131 2px solid;
     border-radius: 50%;
     color: white;
-    font-size: 2vw;
+    font-size: 40px;
+    padding: 0 25px;
     text-decoration: none;
-    padding: 0px 1.2vw;
-    padding-bottom: 5px;
-    margin-top: 90vh;
     cursor: pointer;
-    display: none;
-    margin-left: 94vw;
-}
-.back_to_top-show {
-    display: block;
+    transition: 400ms;
+    right: -100px;
+    bottom: 20px;
 }

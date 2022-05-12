@@ -27,7 +27,7 @@
                     <a class="nav-link active" aria-current="page" href="#">Главная</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Каталог</a>
+                    <a class="nav-link" href="#">Меню</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#">О нас</a>
@@ -45,7 +45,7 @@
           </nav>
     </header>
 
-    <a class="back_to_top" title="Наверх">↑</a>
+    <a class="back_to_top" href="#" id="btt" title="Наверх">↑</a>
 
     <!-- Модальное окно -->
     <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
@@ -66,9 +66,9 @@
                   <label for="exampleInputPassword1" class="form-label">Пароль</label>
                   <input type="password" name="password" class="form-control" id="exampleInputPassword1">
                 </div>
-                <input type="submit" class="btn" id="singin" value="Войти">
+                <button class="btn" id="singin" onclick="login(e)">Войти</button>
                 <?php 
-                        if ($_SESSION['message']){
+                        if (isset($_SESSION['message'])){
                             echo '<div class="alert alert-danger">' . $_SESSION['message'] . '</div>';
                         }
                         unset($_SESSION['message']);
@@ -146,7 +146,7 @@
         <div class="container">
           <div class="d-flex" style="align-items: center; justify-content: space-evenly;">
             <img class="img-fluid image-big-picture div-sec-1" src="../images/img-sec-1 1.png" alt="">
-            <div>
+            <div class="div-sec-1">
               <h1>Кафе "Теснота"</h1>
               <p class="lead">В тесноте, да не в обиде</p>
               <a class="btn btn-primary" href="#" role="button">Перейти к каталогу →</a>
@@ -257,7 +257,18 @@
 
       </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="../js/login.js"></script>
+    <script>
+        function login(event) {
+          event.preventDefault()
+          $.ajax({
+              url: '../functions/login.php',
+              method: 'POST',
+              success: (response)=>{
+                  console.log('asfhnf');
+              }
+        })
+}
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="../js/scroll.js"></script>
     <script src="../js/up.js"></script>
