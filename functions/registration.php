@@ -1,5 +1,9 @@
 <?php
+    session_start();
+
     require './connect.php';
+
+    $_SESSION['error-registration'] = 0;
 
     $full_name = $_POST['full_name'];
     $login = $_POST['login'];
@@ -14,26 +18,30 @@
         $check_login = $connect->query("SELECT * FROM `users` WHERE `login` = '$login'");
         $response = $check_login->fetch(PDO::FETCH_ASSOC);
         if ($response['login']){
-            $_SESSION['message'] = "Этот логин занят, придумайте другой!";
+            $_SESSION['message1'] = 'Этот логин занят, придумайте другой!';
             header("Location: ../output/index.php");
+            $_SESSION['error-registration'] = 1;
         }
         else{
-            $check_email = $connect->prepare("SELECT * FROM `users` WHERE `email` = '$email'");
-            $check_email->execute();
+            $check_email = $connect->query("SELECT * FROM `users` WHERE `email` = '$email'");
+            // $check_email->execute();
             $response1 = $check_email->fetch(PDO::FETCH_ASSOC);
             if($response1['email']){
-                $_SESSION['message'] = "Такая почта уже используется, введите свою почту!";
-                header('Location: ../output/registration.php'); 
+                $_SESSION['message1'] = 'Такая почта уже используется, введите свою почту!';
+                header('Location: ../output/index.php'); 
+                $_SESSION['error-registration'] = 1;
             }
             else{
-                $add_user = $connect->prepare("INSERT INTO `users`(`id`, `full_name`, `login`, `email`, `avatar`, `password`) VALUES (NULL, '$full_name','$login','$email','$avatar','$password')");
-                $add_user->execute();
-                $_SESSION['message'] = "Регистрация прошла успешно!";
+                $add_user = $connect->query("INSERT INTO `users`(`id`, `full_name`, `login`, `email`, `avatar`, `password`) VALUES (NULL, '$full_name','$login','$email','$avatar','$password')");
+                // $add_user->execute();
+                $_SESSION['message2'] = 'Регистрация прошла успешно!';
                 header('Location: ../output/index.php');
+                $_SESSION['error-registration'] = 1;
             }
         }
     }
     else{
-        $_SESSION['message'] = 'Пароли не совпадают!';
+        $_SESSION['message1'] = 'Пароли не совпадают!';
         header('Location: ../output/index.php'); 
+        $_SESSION['error-registration'] = 1;
     }

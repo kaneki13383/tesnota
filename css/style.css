@@ -60,9 +60,6 @@
 .active{
     border-bottom: #AF3131 2px solid;
 }
-.btn-close{
-    background: url(../images/close.png);
-}
 .modal-header{
     border-bottom: #AF3131 1px solid;
 }
@@ -137,4 +134,7 @@ textarea{
     transition: 400ms;
     right: -100px;
     bottom: 20px;
+}
+.footer_navbar{
+    margin-top: 5vh;
 }

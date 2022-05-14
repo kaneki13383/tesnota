@@ -1,7 +1,7 @@
 <?php
 
     session_start();
-
+    $_SESSION['error-login'] = 0;
     require './connect.php';
 
     $email = $_POST['email'];
@@ -17,12 +17,18 @@
             "full_name" => $user['full_name'],
             "login" => $user['login'],
             "email" => $user['email'],
-            "avatar" => $user['avatar']
+            "avatar" => $user['avatar'],
+            "adress" => $user['adress'],
+            "number" => $user['number'],
+            "role" => $user['role']
         ];
         header("Location: ../output/profile.php");
+        $_SESSION['error-login'] = 0;
     } 
     else{
         $_SESSION['message'] = 'Невереный логин или пароль!';
+        
         header("Location: ../output/index.php");
+        $_SESSION['error-login'] = 1;
     }
 ?>
