@@ -88,7 +88,6 @@ h2{
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-
 }
 .accordion-header{
     margin: 0;
@@ -115,11 +114,11 @@ h2{
     box-shadow: none;
     border-color: transparent;
 }
-form{
-    color: white;
-}
 textarea{
     resize: none;
+}
+form{
+    color: white;
 }
 #btt{
     position: fixed;

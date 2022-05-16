@@ -49,7 +49,6 @@ if (!$_SESSION['user']){
           </nav>
     </header>
 
-
 <div class="container bootstrap snippets bootdey">
 <div class="row">
   <div class="profile-nav col-md-3">
@@ -63,18 +62,39 @@ if (!$_SESSION['user']){
           </div>
 
           <ul class="nav nav-pills nav-stacked ">
-              <li class="active"><a href="./profile.php"> <i class="fa fa-user"></i> Профиль</a></li>
-              <li><a href="#"> <i class="fa fa-edit"></i> Редактировать профиль</a></li>
+              <li id="profile" class="active"><a href="#" onclick="profile()"> <i class="fa fa-user"></i> Профиль</a></li>
+              <li id="ed_prof"><a href="#"  onclick="edit()"> <i class="fa fa-edit"></i> Редактировать профиль</a></li>
               <li><a href="../functions/logout.php"> <i class="fa fa-logout"></i> Выход</a></li>
           </ul>
       </div>
   </div>
   <div class="profile-info col-md-9">
       <div class="panel">
-          <!-- <div class="bio-graph-heading">
-              Aliquam ac magna metus. Nam sed arcu non tellus fringilla fringilla ut vel ispum. Aliquam ac magna metus.
-          </div> -->
-          <div class="panel-body bio-graph-info">
+          <div id="edit_prof" class="container">
+          <h3>Редактировать профиль</h3>
+          <form class="row g-3">
+            <div class="col-md-6">
+                <label for="inputEmail4" class="form-label">ФИО</label>
+                <input type="text" name="full_name" class="form-control" id="inputEmail4">
+            </div>
+            <div class="col-md-6">
+                <label for="inputPassword4" class="form-label">Email</label>
+                <input type="email" name="email" class="form-control" id="inputPassword4">
+            </div>
+            <div class="col-12">
+                <label for="inputAddress" class="form-label">Адрес</label>
+                <input type="text" name="adress" class="form-control" id="inputAddress" placeholder="Проспект Ленина">
+            </div>
+            <div class="col-12">
+                <label for="inputAddress" class="form-label">Телефон</label>
+                <input type="text" name="number" class="form-control" id="inputAddress" placeholder="Проспект Ленина">
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+            </div>
+          </form>
+          </div>
+          <div id="biograph" class="panel-body bio-graph-info">
               <h3>Ваши данные</h3>
               <div class="row">
                   <div class="bio-row">
@@ -131,33 +151,47 @@ if (!$_SESSION['user']){
               </div>
           </div>
       </div>
-      <div class="container">
-          <h3>Для заказа необходимо запонить форму</h2>
-          <form action="../functions/form-profile.php" method="post">
-              <input type="text" class="input-none" name="id" placeholder="" value="<?=$_SESSION['user']['id']?>">
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Номер телефона</label>
-                <input type="text"  name="number" class="form-control" id="exampleFormControlInput1" placeholder="8XXXXXXXXXX">
-                </div>
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Место проживания</label>
-                <input type="text" name="adress" class="form-control" id="exampleFormControlInput1" placeholder="Ул. Пушкина, Дом Колотушкина 17 подьезд 3 кв 142">
-            </div>
-            <button type="submit" class="btn">Отправить</button>
-            <?php 
-                if (isset($_SESSION['message-form-profile'])){
-                    ?>
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <?=$_SESSION['message-form-profile']?>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Закрыть"></button>
-                            </div>
-                    <?
-
-                }
-                unset($_SESSION['message-form-profile']);
+        
+      <? 
+      require '../functions/connect.php';
+      $id = $_SESSION['user']['id'];
+      $result = $connect->query("SELECT * FROM `users` WHERE `id` = '$id'");
+      while($row = $result->fetch(PDO::FETCH_ASSOC)){
+          if ($row['addres'] == NULL & $row['number'] == NULL){
             ?>
-        </form>
-      </div>
+                <div class="container">
+                    <h3>Для заказа необходимо запонить форму</h2>
+                    <form action="../functions/form-profile.php" method="post">
+                        <input type="text" class="input-none" name="id" placeholder="" value="<?=$_SESSION['user']['id']?>">
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Номер телефона</label>
+                            <input type="text"  name="number" class="form-control" id="exampleFormControlInput1" placeholder="8XXXXXXXXXX">
+                            </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Место проживания</label>
+                            <input type="text" name="adress" class="form-control" id="exampleFormControlInput1" placeholder="Ул. Пушкина, Дом Колотушкина 17 подьезд 3 кв 142">
+                        </div>
+                        <button type="submit" class="btn">Отправить</button>
+                    </form>
+                </div>
+            <?
+          }
+      }
+      ?>
+<?php 
+    if (isset($_SESSION['message-form-profile'])){
+        ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <?=$_SESSION['message-form-profile']?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Закрыть"></button>
+                </div>
+        <?
+
+    }
+    unset($_SESSION['message-form-profile']);
+?>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="../js/edit_profile.js"></script>
 </body>
 </html>

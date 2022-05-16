@@ -15,8 +15,8 @@
 <body class="bg-dark" id="body">
 
 <?php 
-  if(!$_SESSION['user']){
-    echo '<header>
+  if(!$_SESSION['user']){ ?>
+    <header>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="navheader">
         <div class="container">
           <a class="navbar-brand" href="./index.php">
@@ -47,10 +47,10 @@
           </div>
         </div>
       </nav>
-  </header>';
+  </header> <?
   }
-  else{
-    echo '<header>
+  else{?>
+    <header>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="navheader">
         <div class="container">
           <a class="navbar-brand" href="./index.php">
@@ -82,12 +82,9 @@
         </div>
       </nav>
 </header>
-';
+<?
   }
 ?>
-      
-    
-
     <a class="back_to_top" href="#" id="btt" title="Наверх">↑</a>
 
     <!-- Модальное окно -->
@@ -112,11 +109,18 @@
                 </div>
                 <button class="btn" id="singin">Войти</button>                
                 <?php 
-                        if (isset($_SESSION['message'])){
-                            echo '<div class="alert alert-danger">' . $_SESSION['message'] . '</div>';
-                        }
-                        unset($_SESSION['message']);
-                    ?>
+                    if (isset($_SESSION['message'])){
+                        ?>
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <?=$_SESSION['message']?>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Закрыть"></button>
+                                </div>
+                        <?
+
+                    }
+                    unset($_SESSION['message']);
+                ?>
+
               </form> <!---------------------------------------------------------------------------------------------------------->
             </div>
             <div class="modal-footer">
@@ -171,18 +175,29 @@
                 </div>
                 <button type="submit" class="btn btn-sing-in-2">Зарегистрироваться</button>
                 <?php 
-                        if (isset($_SESSION['message1'])){
-                            echo '<div class="alert alert-danger">' . $_SESSION['message1'] . '</div>';
-                        }
-                        unset($_SESSION['message1']);
-                    ?>
-                    <?php 
-                        if (isset($_SESSION['message2'])){
-                            echo '<div class="alert alert-success">' . $_SESSION['message2'] . '</div>';
-                        }
-                        unset($_SESSION['message2']);
-                    ?>
-              </form>
+                    if (isset($_SESSION['message1'])){
+                        ?>
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <?=$_SESSION['message1']?>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Закрыть"></button>
+                                </div>
+                        <?
+
+                    }
+                    unset($_SESSION['message1']);
+                ?>
+                  <?php 
+                    if (isset($_SESSION['message2'])){
+                        ?>
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <?=$_SESSION['message2']?>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Закрыть"></button>
+                                </div>
+                        <?
+
+                    }
+                    unset($_SESSION['message2']);
+                ?>
               <!---------------------------------------------------------------------------------------------------------->
             </div>
             <div class="modal-footer">
@@ -277,28 +292,29 @@
         </div>
       </section>
 
-      <section>
+      <section class="feedback">
         <div class="container">
           <h2>Обратная связь</h2>
-          <form class="row g-3">
+          <form action=""></form>
+          <form class="row g-3" method="POST" action="../functions/feedback.php">
           <div class="col-md-6">
             <label for="inputEmail4" class="form-label">Имя</label>
-            <input type="text" class="form-control" id="inputEmail4" placeholder="Иван">
+            <input type="text" name="name" class="form-control" id="inputEmail4" placeholder="Иван">
           </div>
           <div class="col-md-6">
             <label for="inputPassword4" class="form-label">Фамилия</label>
-            <input type="text" class="form-control" id="inputPassword4" placeholder="Иванов">
+            <input type="text" name="surname" class="form-control" id="inputPassword4" placeholder="Иванов">
           </div>
           <div class="col-12">
             <label for="inputAddress" class="form-label">Эл. почта</label>
-            <input type="email" class="form-control" id="inputAddress" placeholder="tesnota@mail.ru">
+            <input type="email" name="email" class="form-control" id="inputAddress" placeholder="tesnota@mail.ru">
           </div>
           <div class="col-12">
             <label for="inputAddress2" class="form-label">Комментарий</label>
-            <textarea type="text" class="form-control" style="height: 200px;" id="inputAddress2"></textarea>
+            <textarea type="text" name="comm" class="form-control" style="height: 200px;" id="inputAddress2"></textarea>
           </div>
           <div class="col-12">
-            <button type="submit" style="width: 150px" class="btn btn-primary">Отправить</button>
+            <button type="submit" style="width: 150px" class="btn ">Отправить</button>
           </div>
         </form>
       </section>
