@@ -72,26 +72,51 @@ if (!$_SESSION['user']){
       <div class="panel">
           <div id="edit_prof" class="container">
           <h3>Редактировать профиль</h3>
-          <form class="row g-3">
+          <form class="row g-3" method="post" action="../functions/edit_profile.php">
+              <input class="input-none" type="text" name="id" value="<?=$_SESSION['user']['id']?>">
             <div class="col-md-6">
                 <label for="inputEmail4" class="form-label">ФИО</label>
-                <input type="text" name="full_name" class="form-control" id="inputEmail4">
+                <input type="text" name="full_name" class="form-control" id="inputEmail4" placeholder="Иванов Иван Иванович">
             </div>
             <div class="col-md-6">
                 <label for="inputPassword4" class="form-label">Email</label>
-                <input type="email" name="email" class="form-control" id="inputPassword4">
+                <input type="email" name="email" class="form-control" id="inputPassword4" placeholder="tesnota@mail.ru">
             </div>
             <div class="col-12">
                 <label for="inputAddress" class="form-label">Адрес</label>
-                <input type="text" name="adress" class="form-control" id="inputAddress" placeholder="Проспект Ленина">
+                <input type="text" name="adress" class="form-control" id="inputAddress" placeholder="Ул. Пушкина, Дом Колотушкина 17 подьезд 3 кв 142">
             </div>
             <div class="col-12">
                 <label for="inputAddress" class="form-label">Телефон</label>
-                <input type="text" name="number" class="form-control" id="inputAddress" placeholder="Проспект Ленина">
+                <input type="text" name="number" class="form-control" id="inputAddress" placeholder="8XXXXXXXXXX">
             </div>
             <div class="col-12">
                 <button type="submit" class="btn btn-primary">Сохранить изменения</button>
             </div>
+            <?php 
+                if (isset($_SESSION['error-edit'])){
+                    ?>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <?=$_SESSION['error-edit']?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Закрыть"></button>
+                            </div>
+                    <?
+
+                }
+                unset($_SESSION['error-edit']);
+            ?>
+            <?php 
+                if (isset($_SESSION['success-edit'])){
+                    ?>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <?=$_SESSION['success-edit']?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Закрыть"></button>
+                            </div>
+                    <?
+
+                }
+                unset($_SESSION['success-edit']);
+            ?>
           </form>
           </div>
           <div id="biograph" class="panel-body bio-graph-info">
@@ -107,7 +132,7 @@ if (!$_SESSION['user']){
                       $result = $connect->query("SELECT * FROM `users` WHERE `id` = '$id'");
                       while($row = $result->fetch(PDO::FETCH_ASSOC)){
                           if ($row['role'] == 0){
-                            echo 'Пользователь';
+                                echo 'Пользователь';
                             }
                             else{
                                 echo 'Администратор';
@@ -193,5 +218,15 @@ if (!$_SESSION['user']){
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="../js/edit_profile.js"></script>
+    <?php
+        if($_SESSION['error'] == 1){
+            ?>
+                <script>
+                    edit();
+                </script>
+            <?php
+            $_SESSION['error'] = 0;
+        }
+    ?>
 </body>
 </html>

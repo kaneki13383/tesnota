@@ -3,7 +3,6 @@ function edit (){
     document.getElementById('profile').classList.remove('active');
     document.getElementById('ed_prof').classList.add('active');
     document.getElementById('edit_prof').style.display = 'block';
-    let id = 1;
 }
 
 function profile(){
@@ -11,5 +10,4 @@ function profile(){
     document.getElementById('profile').classList.add('active');
     document.getElementById('ed_prof').classList.remove('active');
     document.getElementById('edit_prof').style.display = 'none';
-    let id = 2;
 }

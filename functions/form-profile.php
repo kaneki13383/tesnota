@@ -4,7 +4,7 @@ session_start();
 
 require './connect.php';
 
-echo $id = $_POST['id'];
+$id = $_POST['id'];
 
 $number = $_POST['number'];
 $adress = $_POST['adress'];
