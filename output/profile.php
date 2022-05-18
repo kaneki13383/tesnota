@@ -57,8 +57,22 @@ if (!$_SESSION['user']){
               <a href="#">
                   <img src="<?='/' . $_SESSION['user']['avatar']?>" alt="">
               </a>
-              <h1><?=$_SESSION['user']['full_name']?></h1>
-              <p><?=$_SESSION['user']['email']?></p>
+              <h1><?
+                        require '../functions/connect.php';
+                        $id = $_SESSION['user']['id'];
+                        $result = $connect->query("SELECT * FROM `users` WHERE `id` = '$id'");
+                        while($row = $result->fetch(PDO::FETCH_ASSOC)){
+                            echo $row['full_name'];
+                        }
+                      ?></h1>
+              <p><?
+                        require '../functions/connect.php';
+                        $id = $_SESSION['user']['id'];
+                        $result = $connect->query("SELECT * FROM `users` WHERE `id` = '$id'");
+                        while($row = $result->fetch(PDO::FETCH_ASSOC)){
+                            echo $row['email'];
+                        }
+                      ?></p>
           </div>
 
           <ul class="nav nav-pills nav-stacked ">
@@ -76,19 +90,57 @@ if (!$_SESSION['user']){
               <input class="input-none" type="text" name="id" value="<?=$_SESSION['user']['id']?>">
             <div class="col-md-6">
                 <label for="inputEmail4" class="form-label">ФИО</label>
-                <input type="text" name="full_name" class="form-control" id="inputEmail4" placeholder="Иванов Иван Иванович">
+                <input type="text" name="full_name" class="form-control" id="inputEmail4" value="<?
+                        require '../functions/connect.php';
+                        $id = $_SESSION['user']['id'];
+                        $result = $connect->query("SELECT * FROM `users` WHERE `id` = '$id'");
+                        while($row = $result->fetch(PDO::FETCH_ASSOC)){
+                            echo $row['full_name'];
+                        }
+                      ?>">
             </div>
             <div class="col-md-6">
                 <label for="inputPassword4" class="form-label">Email</label>
-                <input type="email" name="email" class="form-control" id="inputPassword4" placeholder="tesnota@mail.ru">
+                <input type="email" name="email" class="form-control" id="inputPassword4" value="<?
+                        require '../functions/connect.php';
+                        $id = $_SESSION['user']['id'];
+                        $result = $connect->query("SELECT * FROM `users` WHERE `id` = '$id'");
+                        while($row = $result->fetch(PDO::FETCH_ASSOC)){
+                            echo $row['email'];
+                        }
+                      ?>">
             </div>
             <div class="col-12">
                 <label for="inputAddress" class="form-label">Адрес</label>
-                <input type="text" name="adress" class="form-control" id="inputAddress" placeholder="Ул. Пушкина, Дом Колотушкина 17 подьезд 3 кв 142">
+                <input type="text" name="adress" class="form-control" id="inputAddress" placeholder="Ул. Пушкина, Дом Колотушкина 17 подьезд 3 кв 142" value="<?php                      
+                      require '../functions/connect.php';
+                      $id = $_SESSION['user']['id'];
+                      $result = $connect->query("SELECT * FROM `users` WHERE `id` = '$id'");
+                      while($row = $result->fetch(PDO::FETCH_ASSOC)){
+                          if ($row['adress'] == NULL){
+                            echo 'Не указан';
+                            }
+                            else{
+                                echo $row['adress'];
+                            }
+                      }                       
+                      ?>">
             </div>
             <div class="col-12">
                 <label for="inputAddress" class="form-label">Телефон</label>
-                <input type="text" name="number" class="form-control" id="inputAddress" placeholder="8XXXXXXXXXX">
+                <input type="text" name="number" class="form-control" id="inputAddress" placeholder="8XXXXXXXXXX" value="<?php                      
+                      require '../functions/connect.php';
+                      $id = $_SESSION['user']['id'];
+                      $result = $connect->query("SELECT * FROM `users` WHERE `id` = '$id'");
+                      while($row = $result->fetch(PDO::FETCH_ASSOC)){
+                          if ($row['number'] == NULL){
+                            echo 'Не указан';
+                            }
+                            else{
+                                echo $row['number'];
+                            }
+                      }                       
+                      ?>">
             </div>
             <div class="col-12">
                 <button type="submit" class="btn btn-primary">Сохранить изменения</button>
@@ -123,7 +175,14 @@ if (!$_SESSION['user']){
               <h3>Ваши данные</h3>
               <div class="row">
                   <div class="bio-row">
-                      <p><span>ФИО:</span><?=$_SESSION['user']['full_name']?></p>
+                      <p><span>ФИО:</span><?
+                        require '../functions/connect.php';
+                        $id = $_SESSION['user']['id'];
+                        $result = $connect->query("SELECT * FROM `users` WHERE `id` = '$id'");
+                        while($row = $result->fetch(PDO::FETCH_ASSOC)){
+                            echo $row['full_name'];
+                        }
+                      ?></p>
                   </div>
                   <div class="bio-row">
                       <p><span>Роль:</span> <?php                      
@@ -141,7 +200,14 @@ if (!$_SESSION['user']){
                       ?></p>
                   </div>
                   <div class="bio-row">
-                      <p><span>Email:</span><?=$_SESSION['user']['email']?></p>
+                      <p><span>Email:</span><?
+                        require '../functions/connect.php';
+                        $id = $_SESSION['user']['id'];
+                        $result = $connect->query("SELECT * FROM `users` WHERE `id` = '$id'");
+                        while($row = $result->fetch(PDO::FETCH_ASSOC)){
+                            echo $row['email'];
+                        }
+                      ?></p>
                   </div>
                   <div class="bio-row">
                       <p><span>Телефон:</span> <?php                      
@@ -184,7 +250,7 @@ if (!$_SESSION['user']){
       while($row = $result->fetch(PDO::FETCH_ASSOC)){
           if ($row['addres'] == NULL & $row['number'] == NULL){
             ?>
-                <div class="container">
+                <div id="zakaz" class="container">
                     <h3>Для заказа необходимо запонить форму</h2>
                     <form action="../functions/form-profile.php" method="post">
                         <input type="text" class="input-none" name="id" placeholder="" value="<?=$_SESSION['user']['id']?>">
