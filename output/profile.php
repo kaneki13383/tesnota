@@ -31,7 +31,7 @@ if (!$_SESSION['user']){
                     <a class="nav-link" aria-current="page" href="./index.php">Главная</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Меню</a>
+                    <a class="nav-link" href="./menu.php">Меню</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#">О нас</a>
@@ -57,22 +57,8 @@ if (!$_SESSION['user']){
               <a href="#">
                   <img src="<?='/' . $_SESSION['user']['avatar']?>" alt="">
               </a>
-              <h1><?
-                        require '../functions/connect.php';
-                        $id = $_SESSION['user']['id'];
-                        $result = $connect->query("SELECT * FROM `users` WHERE `id` = '$id'");
-                        while($row = $result->fetch(PDO::FETCH_ASSOC)){
-                            echo $row['full_name'];
-                        }
-                      ?></h1>
-              <p><?
-                        require '../functions/connect.php';
-                        $id = $_SESSION['user']['id'];
-                        $result = $connect->query("SELECT * FROM `users` WHERE `id` = '$id'");
-                        while($row = $result->fetch(PDO::FETCH_ASSOC)){
-                            echo $row['email'];
-                        }
-                      ?></p>
+              <h1><?=$_SESSION['user']['full_name']?></h1>
+              <p><?=$_SESSION['user']['email']?></p>
           </div>
 
           <ul class="nav nav-pills nav-stacked ">
@@ -90,60 +76,32 @@ if (!$_SESSION['user']){
               <input class="input-none" type="text" name="id" value="<?=$_SESSION['user']['id']?>">
             <div class="col-md-6">
                 <label for="inputEmail4" class="form-label">ФИО</label>
-                <input type="text" name="full_name" class="form-control" id="inputEmail4" value="<?
-                        require '../functions/connect.php';
-                        $id = $_SESSION['user']['id'];
-                        $result = $connect->query("SELECT * FROM `users` WHERE `id` = '$id'");
-                        while($row = $result->fetch(PDO::FETCH_ASSOC)){
-                            echo $row['full_name'];
-                        }
-                      ?>">
+                <input type="text" name="full_name" class="form-control" id="inputEmail4" value="<?=$_SESSION['user']['full_name']?>">
             </div>
             <div class="col-md-6">
-                <label for="inputPassword4" class="form-label">Email</label>
-                <input type="email" name="email" class="form-control" id="inputPassword4" value="<?
-                        require '../functions/connect.php';
-                        $id = $_SESSION['user']['id'];
-                        $result = $connect->query("SELECT * FROM `users` WHERE `id` = '$id'");
-                        while($row = $result->fetch(PDO::FETCH_ASSOC)){
-                            echo $row['email'];
-                        }
-                      ?>">
-            </div>
-            <div class="col-12">
-                <label for="inputAddress" class="form-label">Адрес</label>
-                <input type="text" name="adress" class="form-control" id="inputAddress" placeholder="Ул. Пушкина, Дом Колотушкина 17 подьезд 3 кв 142" value="<?php                      
-                      require '../functions/connect.php';
-                      $id = $_SESSION['user']['id'];
-                      $result = $connect->query("SELECT * FROM `users` WHERE `id` = '$id'");
-                      while($row = $result->fetch(PDO::FETCH_ASSOC)){
-                          if ($row['adress'] == NULL){
-                            echo 'Не указан';
+            <label for="inputAddress" class="form-label">Адрес</label>
+                <input type="text" name="adress" class="form-control" id="inputAddress" placeholder="Ул. Пушкина, Дом Колотушкина 17 подьезд 3 кв 142" value="<?
+                             if ($_SESSION['user']['adress'] == NULL){
+                                echo 'Не указан';
                             }
                             else{
-                                echo $row['adress'];
-                            }
-                      }                       
+                                echo $_SESSION['user']['adress'];
+                            }                 
                       ?>">
             </div>
             <div class="col-12">
                 <label for="inputAddress" class="form-label">Телефон</label>
-                <input type="text" name="number" class="form-control" id="inputAddress" placeholder="8XXXXXXXXXX" value="<?php                      
-                      require '../functions/connect.php';
-                      $id = $_SESSION['user']['id'];
-                      $result = $connect->query("SELECT * FROM `users` WHERE `id` = '$id'");
-                      while($row = $result->fetch(PDO::FETCH_ASSOC)){
-                          if ($row['number'] == NULL){
-                            echo 'Не указан';
+                <input type="text" name="number" class="form-control" id="inputAddress" placeholder="8XXXXXXXXXX" value="<?
+                            if ($_SESSION['user']['number'] == NULL){
+                                echo 'Не указан';
                             }
                             else{
-                                echo $row['number'];
-                            }
-                      }                       
+                                echo $_SESSION['user']['number'];
+                            }                  
                       ?>">
             </div>
             <div class="col-12">
-                <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+                <button type="submit" class="btn ">Сохранить изменения</button>
             </div>
             <?php 
                 if (isset($_SESSION['error-edit'])){
@@ -170,85 +128,87 @@ if (!$_SESSION['user']){
                 unset($_SESSION['success-edit']);
             ?>
           </form>
+          <form action="../functions/change_avatar.php" enctype="multipart/form-data" method="post" class="row g-3">
+            <h3>Изменить аватар</h3>
+            <div class="col-md-6">
+                <input type="text" class="input-none" value="<?=$_SESSION['user']['id']?>">
+                <input type="file" name="avatar" class="form-control" id="formFile">
+            </div>
+            <div class="col-md-6">
+                <button type="submit" class="btn">Изменить</button>
+            </div>
+            <?php 
+                if (isset($_SESSION['avatar-error'])){
+                    ?>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <?=$_SESSION['avatar-error']?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Закрыть"></button>
+                            </div>
+                    <?
+
+                }
+                unset($_SESSION['avatar-error']);
+            ?>
+            <?php 
+                if (isset($_SESSION['avatar-success'])){
+                    ?>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <?=$_SESSION['avatar-success']?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Закрыть"></button>
+                            </div>
+                    <?
+
+                }
+                unset($_SESSION['avatar-success']);
+            ?>
+          </form>
+            
           </div>
           <div id="biograph" class="panel-body bio-graph-info">
               <h3>Ваши данные</h3>
               <div class="row">
                   <div class="bio-row">
-                      <p><span>ФИО:</span><?
-                        require '../functions/connect.php';
-                        $id = $_SESSION['user']['id'];
-                        $result = $connect->query("SELECT * FROM `users` WHERE `id` = '$id'");
-                        while($row = $result->fetch(PDO::FETCH_ASSOC)){
-                            echo $row['full_name'];
-                        }
-                      ?></p>
+                      <p><span>ФИО:</span><?=$_SESSION['user']['full_name']?></p>
                   </div>
                   <div class="bio-row">
-                      <p><span>Роль:</span> <?php                      
-                      require '../functions/connect.php';
-                      $id = $_SESSION['user']['id'];
-                      $result = $connect->query("SELECT * FROM `users` WHERE `id` = '$id'");
-                      while($row = $result->fetch(PDO::FETCH_ASSOC)){
-                          if ($row['role'] == 0){
+                      <p><span>Роль:</span> <?php
+                          if ($_SESSION['user']['role'] == 0){
                                 echo 'Пользователь';
                             }
                             else{
                                 echo 'Администратор';
-                            }
-                      }                       
+                            }                    
                       ?></p>
                   </div>
                   <div class="bio-row">
-                      <p><span>Email:</span><?
-                        require '../functions/connect.php';
-                        $id = $_SESSION['user']['id'];
-                        $result = $connect->query("SELECT * FROM `users` WHERE `id` = '$id'");
-                        while($row = $result->fetch(PDO::FETCH_ASSOC)){
-                            echo $row['email'];
-                        }
-                      ?></p>
+                      <p><span>Email:</span><?=$_SESSION['user']['email']?></p>
                   </div>
                   <div class="bio-row">
-                      <p><span>Телефон:</span> <?php                      
-                      require '../functions/connect.php';
-                      $id = $_SESSION['user']['id'];
-                      $result = $connect->query("SELECT * FROM `users` WHERE `id` = '$id'");
-                      while($row = $result->fetch(PDO::FETCH_ASSOC)){
-                          if ($row['number'] == NULL){
+                      <p><span>Телефон:</span><?php
+                          if ($_SESSION['user']['number'] == NULL){
                             echo 'Не указан';
                             }
                             else{
-                                echo $row['number'];
-                            }
-                      }                       
+                                echo $_SESSION['user']['number'];
+                            }                   
                       ?></p>
                   </div>
                   <div class="bio-row">
-                      <p><span>Адрес:</span><?php                      
-                      require '../functions/connect.php';
-                      $id = $_SESSION['user']['id'];
-                      $result = $connect->query("SELECT * FROM `users` WHERE `id` = '$id'");
-                      while($row = $result->fetch(PDO::FETCH_ASSOC)){
-                          if ($row['adress'] == NULL){
+                      <p><span>Адрес:</span><?php
+                          if ($_SESSION['user']['adress'] == NULL){
                             echo 'Не указан';
                             }
                             else{
-                                echo $row['adress'];
-                            }
-                      }                       
+                                echo $_SESSION['user']['adress'];
+                            }                   
                       ?></p>
                   </div>
               </div>
           </div>
       </div>
         
-      <? 
-      require '../functions/connect.php';
-      $id = $_SESSION['user']['id'];
-      $result = $connect->query("SELECT * FROM `users` WHERE `id` = '$id'");
-      while($row = $result->fetch(PDO::FETCH_ASSOC)){
-          if ($row['addres'] == NULL & $row['number'] == NULL){
+      <?
+          if ($_SESSION['user']['addres'] == NULL & $_SESSION['user']['number'] == NULL){
             ?>
                 <div id="zakaz" class="container">
                     <h3>Для заказа необходимо запонить форму</h2>
@@ -267,7 +227,6 @@ if (!$_SESSION['user']){
                 </div>
             <?
           }
-      }
       ?>
 <?php 
     if (isset($_SESSION['message-form-profile'])){

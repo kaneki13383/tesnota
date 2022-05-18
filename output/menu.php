@@ -1,5 +1,5 @@
-<?php
-  session_start();
+<?php 
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -8,12 +8,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/menu.css">
     <link rel="stylesheet" href="../css/style.css">
-    
-    <title>Главная</title>
+    <title>Menu</title>
 </head>
-<body class="bg-dark" id="body">
-
+<body class="bg-dark">
 <?php 
   if(!$_SESSION['user']){ ?>
     <header>
@@ -28,10 +27,10 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Главная</a>
+                <a class="nav-link" aria-current="page" href="./index.php">Главная</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="./menu.php">Меню</a>
+                <a class="nav-link active" href="./menu.php">Меню</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">О нас</a>
@@ -62,10 +61,10 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="./index.php">Главная</a>
+                <a class="nav-link" aria-current="page" href="./index.php">Главная</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="./menu.php">Меню</a>
+                <a class="nav-link active" href="./menu.php">Меню</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">О нас</a>
@@ -85,10 +84,9 @@
 <?
   }
 ?>
-    <a class="back_to_top" href="#" id="btt" title="Наверх">↑</a>
 
-    <!-- Модальное окно -->
-    <div id="god_div"></div>
+<!-- Модальное окно -->
+<div id="god_div"></div>
     <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content bg-dark">
@@ -189,7 +187,7 @@
                   <?php 
                     if (isset($_SESSION['message2'])){
                         ?>
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                 <?=$_SESSION['message2']?>
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Закрыть"></button>
                                 </div>
@@ -207,137 +205,14 @@
         </div>
       </div>
 
-      <section class="section1">
-        <div class="container">
-          <div class="d-flex" style="align-items: center; justify-content: space-evenly;">
-            <img class="img-fluid image-big-picture div-sec-1" src="../images/img-sec-1 1.png" alt="">
-            <div class="div-sec-1">
-              <h1>Кафе "Теснота"</h1>
-              <p class="lead">В тесноте, да не в обиде</p>
-              <a class="btn btn-primary" href="#" role="button">Перейти к каталогу →</a>
-            </div>            
-          </div>          
-        </div>        
-      </section>
+<section>
+    
+</section>
 
-      <section class="about_company">
-        <div class="container">
-            <h2>О компании</h2>
-          <div class="d-flex" style="align-items: center; justify-content: space-evenly;"> 
-            <img src="../images/image 11.png" alt="" width="150px" class="img-fluid">
-            <p class="lead">Наше кафе является один из самых лучших в городе, у нас постоянно пополняется каталог товаров, у нас приятная музыка и астомсфера.</p>
-          </div>
-        </div>
-      </section>
 
-      <section class="popular">
-        <div class="container">
-          <h2>Популярные товары</h2>
-          <div class="d-flex pop-flex">
-          <figure class="figure">
-            <img src="../images/image 4.png" style="width: 400px;" class="figure-img img-fluid rounded" alt="...">
-            <figcaption class="figure-caption">Баранья корейка в духовке</figcaption>
-          </figure>
-          <figure class="figure">
-            <img src="../images/image 5.png" style="width: 400px; height: 306.36px" class="figure-img img-fluid rounded" alt="...">
-            <figcaption class="figure-caption">Тигровые креветки в томатном соусе</figcaption>
-          </figure>
-          <figure class="figure">
-            <img src="../images/image 12.png" style="width: 400px; height: 306.36px" class="figure-img img-fluid rounded" alt="...">
-            <figcaption class="figure-caption">Тальятта из говядины</figcaption>
-          </figure>
-          <figure class="figure">
-            <img src="../images/image 14.png" style="width: 400px; height: 306.36px" class="figure-img img-fluid rounded" alt="...">
-            <figcaption class="figure-caption">Суп Том Ян</figcaption>
-          </figure>
-          </div>
-        </div>
-      </section>
-      
-      <section class="qwestions">
-        <div class="container">
-          <h2>Часто задаваемые вопросы</h2>
-          <div class="accordion accordion-flush" id="accordionFlushExample">
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="flush-headingOne">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                  До скольки мы работаем?
-                </button>
-              </h2>
-              <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body">Наше кафе работает с <code>9.00</code> до <code>22.00</code></div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="flush-headingTwo">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                  Есть ли у нас столики на свежем воздухе?
-                </button>
-              </h2>
-              <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body">Да, у нас есть столики на свежем воздухе</div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="flush-headingThree">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                  Где находится наше кафе?
-                </button>
-              </h2>
-              <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body">ул. Джона Рида 12б</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="feedback">
-        <div class="container">
-          <h2>Обратная связь</h2>
-          <form action=""></form>
-          <form class="row g-3" method="POST" action="../functions/feedback.php">
-          <div class="col-md-6">
-            <label for="inputEmail4" class="form-label">Имя</label>
-            <input type="text" name="name" class="form-control" id="inputEmail4" placeholder="Иван">
-          </div>
-          <div class="col-md-6">
-            <label for="inputPassword4" class="form-label">Фамилия</label>
-            <input type="text" name="surname" class="form-control" id="inputPassword4" placeholder="Иванов">
-          </div>
-          <div class="col-12">
-            <label for="inputAddress" class="form-label">Эл. почта</label>
-            <input type="email" name="email" class="form-control" id="inputAddress" placeholder="tesnota@mail.ru">
-          </div>
-          <div class="col-12">
-            <label for="inputAddress2" class="form-label">Комментарий</label>
-            <textarea type="text" name="comm" class="form-control" style="height: 200px;" id="inputAddress2"></textarea>
-          </div>
-          <div class="col-12">
-            <button type="submit" style="width: 150px" class="btn ">Отправить</button>
-          </div>
-        </form>
-      </section>
-
-      <footer>
-      <nav class="navbar footer_navbar navbar-light bg-dark">
-        <div class="container">
-          <li>
-            <a class="navbar-brand" href="#"><img src="../images/logo.png" width="200px" alt=""></a>
-            <p class="lead">©Гавкошмыг corporation</p>
-          </li>
-          <li>
-            <p class="lead">8 (967) 331 37-86</p>
-            <p class="lead">danchik.kun@mail.ru</p>
-          </li>
-        </div>
-      </nav>
-      </footer>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="../js/scroll.js"></script>
-    <script src="../js/up.js"></script>
-    <?php
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<?php
       if($_SESSION['error-login'] === 1){
     ?>
         <script>
@@ -358,6 +233,5 @@
         $_SESSION['error-registration'] = 0;
       }
     ?>
-    
-  </body>
+</body>
 </html>
