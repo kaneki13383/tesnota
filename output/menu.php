@@ -16,7 +16,7 @@ session_start();
 <?php 
   if(!$_SESSION['user']){ ?>
     <header>
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="navheader">
+    <nav class="navbar navbar-expand-lg navbar-dark" id="navheader">
         <div class="container">
           <a class="navbar-brand" href="./index.php">
               <img src="../images/logo.png" class="img-fluid" style="width: 200px;" alt="">
@@ -50,7 +50,7 @@ session_start();
   }
   else{?>
     <header>
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="navheader">
+    <nav class="navbar navbar-expand-lg navbar-dark" id="navheader">
         <div class="container">
           <a class="navbar-brand" href="./index.php">
               <img src="../images/logo.png" class="img-fluid" style="width: 200px;" alt="">
@@ -205,8 +205,26 @@ session_start();
         </div>
       </div>
 
-<section>
+<section class="menu">
+  <div class="container">
+    <?
+      require '../functions/connect.php';
+      $sql = $connect->query("SELECT * FROM `menu`");
+      while($row = $sql->fetch(PDO::FETCH_ASSOC)){
+        ?>
+          <div class="card bg-dark" style="width: 18rem;">
+            <img src="<?='/'.$row['image']?>" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title"><?=$row['name']?></h5>
+              <p class="card-text"><?=$row['discription']?></p>
+              <a href="#" class="btn">В корзину</a>
+            </div>
+          </div>
+        <?
+      }
+    ?>
     
+  </div>  
 </section>
 
 

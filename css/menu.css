@@ -1,0 +1,14 @@
+*{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+h5{
+    color: white;
+}
+.card{
+    border: 1px #AF3131 solid;
+}
+.menu{
+    margin-top: 5vh;
+}
