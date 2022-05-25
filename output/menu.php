@@ -73,6 +73,7 @@ session_start();
                 <a class="nav-link" href="./profile.php">Профиль</a>
               </li>
             </ul>
+            <img src="../images/basket.png" alt="" class="backet">
             <form class="d-flex">
                 <input class="form-control me-2 search" type="search" placeholder="Поиск" aria-label="Поиск">
                 <button class="btn search-logo" type="submit"><img src="../images/search.png" alt=""></button>
@@ -207,23 +208,25 @@ session_start();
 
 <section class="menu">
   <div class="container">
-    <?
-      require '../functions/connect.php';
-      $sql = $connect->query("SELECT * FROM `menu`");
-      while($row = $sql->fetch(PDO::FETCH_ASSOC)){
-        ?>
-          <div class="card bg-dark" style="width: 18rem;">
-            <img src="<?='/'.$row['image']?>" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title"><?=$row['name']?></h5>
-              <p class="card-text"><?=$row['discription']?></p>
-              <a href="#" class="btn">В корзину</a>
+    <div class="d-flex" style="flex-wrap: wrap; justify-content: space-evenly">
+      <?
+        require '../functions/connect.php';
+        $sql = $connect->query("SELECT * FROM `menu`");
+        while($row = $sql->fetch(PDO::FETCH_ASSOC)){
+          ?>
+            <div class="card bg-dark" style="width: 18rem;">
+              <img src="<?='/'.$row['img']?>" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title"><?=$row['name']?></h5>
+                <p class="card-text"><?=$row['discription']?></p>
+                <p class="card-price"><?=$row['price']?> $</p>
+                <a href="#" class="btn">В корзину</a>
+              </div>
             </div>
-          </div>
-        <?
-      }
-    ?>
-    
+          <?
+        }
+      ?>
+    </div>
   </div>  
 </section>
 

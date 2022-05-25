@@ -12,3 +12,12 @@ h5{
 .menu{
     margin-top: 5vh;
 }
+.backet{
+    margin-right: 2vw;
+}
+@media (max-width: 991px) {
+    .backet{
+        margin-bottom: 3vh;
+        margin-left: 1.5vh;
+    }
+}
