@@ -72,11 +72,13 @@ session_start();
               <li class="nav-item">
                 <a class="nav-link" href="./profile.php">Профиль</a>
               </li>
-            </ul>
-            <img src="../images/basket.png" alt="" class="backet">
+            </ul>            
+            <button type="button" class="btn btn_backet" data-bs-toggle="modal" style="border: none; background-color: transparent;" data-bs-target="#modalCART">
+              <img src="../images/basket.png" alt="" class="backet">
+            </button>
             <form class="d-flex">
                 <input class="form-control me-2 search" type="search" placeholder="Поиск" aria-label="Поиск">
-                <button class="btn search-logo" type="submit"><img src="../images/search.png" alt=""></button>
+                <button class="btn search-logo" type="submit"><img src="../images/search.png" alt=""></button>                
             </form>
           </div>
         </div>
@@ -84,6 +86,18 @@ session_start();
 </header>
 <?
   }
+?>
+
+<?php 
+    if (isset($_SESSION['message1'])){
+        ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <?=$_SESSION['message1']?>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Закрыть"></button>
+            </div>
+        <?
+    }
+    unset($_SESSION['message1']);
 ?>
 
 <!-- Модальное окно -->
@@ -220,7 +234,7 @@ session_start();
                 <h5 class="card-title"><?=$row['name']?></h5>
                 <p class="card-text"><?=$row['discription']?></p>
                 <p class="card-price"><?=$row['price']?> $</p>
-                <a href="#" class="btn">В корзину</a>
+                <a href="../functions/add_basket.php?id=<?=$row['id']?>" class="btn">В корзину</a>
               </div>
             </div>
           <?
@@ -230,6 +244,55 @@ session_start();
   </div>  
 </section>
 
+
+
+<div class="modal" id="modalCART" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content bg-dark">
+      <div class="modal-header">
+        <h5 class="modal-title">Корзина</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <?
+          require '../functions/connect.php';
+          $id = $_SESSION['user']['id'];
+          $sql = $connect->query("SELECT * FROM `cart` WHERE `id_user` = '$id'");
+          while($row = $sql->fetch(PDO::FETCH_ASSOC)){
+            $id_product = $row['id_product'];
+            $sql2 = $connect->query("SELECT * FROM `menu` WHERE `id` = '$id_product'");
+              while($res = $sql2->fetch(PDO::FETCH_ASSOC)){
+                ?>
+                  <div class="card mb-3 bg-dark" style="max-width: 540px;">
+                    <div class="row g-0">
+                      <div class="col-md-4">
+                        <img src="<?='/'. $res['img']?>" class="img-fluid rounded-start" alt="...">
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <h5 class="card-title"><?=$res['name']?></h5>
+                          <p class="card-text">Цена: <?=$res['price']?> $</p>
+                          <a href="../functions/remove_basket.php?id=<?=$row['id_order']?>" class="card-text" style="text-decoration: none; color: red;">Удалить из корзины</a>
+                          <!-- <p class="card-text"><small class="text-muted">Последнее обновление 3 мин. назад</small></p> -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <?
+              }
+          }                 
+        ?>
+        <p class="p_buskcet">Корзина пуста!</p>
+      </div>
+      <div class="modal-footer">
+        <a href="../functions/remove_all_basket.php" type="button" class="btn">Очистить корзину</a>
+        <button type="button" class="btn">Оформить заказ</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -252,6 +315,16 @@ session_start();
         </script>
         <?
         $_SESSION['error-registration'] = 0;
+      }
+
+      if ($_SESSION['error-remove'] === 1){
+        ?>
+        <script>
+          const modal = new bootstrap.Modal(document.querySelector('#modalCART'));
+          modal.show();
+        </script>
+        <?
+        $_SESSION['error-remove'] = 0;
       }
     ?>
 </body>

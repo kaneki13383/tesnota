@@ -21,3 +21,15 @@ h5{
         margin-left: 1.5vh;
     }
 }
+.p_buskcet{
+    position: absolute;
+    z-index: 1;
+    top: 1.1vw;
+}
+.modal-body{
+    padding: 1.4vw;
+}
+.card{
+    position: relative;
+    z-index: 2;
+}

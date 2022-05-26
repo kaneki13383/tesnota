@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Май 25 2022 г., 10:28
+-- Время создания: Май 26 2022 г., 10:51
 -- Версия сервера: 8.0.24
--- Версия PHP: 7.2.34
+-- Версия PHP: 7.4.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,27 @@ SET time_zone = "+00:00";
 --
 -- База данных: `tesnota`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `cart`
+--
+
+CREATE TABLE `cart` (
+  `id_order` int NOT NULL,
+  `id_user` int DEFAULT NULL,
+  `id_product` int DEFAULT NULL,
+  `summ` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Дамп данных таблицы `cart`
+--
+
+INSERT INTO `cart` (`id_order`, `id_user`, `id_product`, `summ`) VALUES
+(1, 1, 1, NULL),
+(2, 1, 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -67,7 +88,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `full_name`, `login`, `email`, `password`, `avatar`, `adress`, `number`, `role`) VALUES
-(1, 'Куницын Даниил Олегович', 'kaneki13383', 'danchik.kun@mail.ru', '123', 'avatars/1652535945tgJqI8-J0dk.jpg', 'Ул Кубанская 17 дом 17 кв 107', '89673312786', 0),
+(1, 'Куницын Даниил Олегович', 'kaneki13383', 'danchik.kun@mail.ru', '123', 'avatars/1652535945tgJqI8-J0dk.jpg', 'Ул Кубанская 17 дом 17 кв 107', '8967312786', 0),
 (2, 'Куницын Олег Геннадьевич', 'kog', 'k-o-g@mail.ru', '111', 'avatars/1652539431d3df3caa.jpg', NULL, NULL, 0),
 (3, 'Куницын Илья Олегович', 'ilya', 'kunitcyndaniil@gmail.com', '123', 'avatars/1652539507', NULL, NULL, 0),
 (5, 'Куницын Олег Геннадьевич ', 'greger', 'kog@mail.ru', '123', 'avatars/16529058351652539431d3df3caa.jpg', 'Ул Кубанская 17 дом 17 кв 107', '89673312786', 0);
@@ -75,6 +96,12 @@ INSERT INTO `users` (`id`, `full_name`, `login`, `email`, `password`, `avatar`, 
 --
 -- Индексы сохранённых таблиц
 --
+
+--
+-- Индексы таблицы `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`id_order`);
 
 --
 -- Индексы таблицы `menu`
@@ -91,6 +118,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT для сохранённых таблиц
 --
+
+--
+-- AUTO_INCREMENT для таблицы `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `id_order` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT для таблицы `menu`

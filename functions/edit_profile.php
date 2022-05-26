@@ -16,6 +16,7 @@
     }
     else{
        $update_full_name = $connect->query("UPDATE `users` SET `full_name` = '$full_name' WHERE `users`.`id` = '$id'");
+       $_SESSION['user']['full_name'] = $full_name;
     } 
     
     $check_number = $connect->query("SELECT `number` FROM `users` WHERE `id` = '$id'");
@@ -26,13 +27,12 @@
     }
     else{
         $update_number = $connect->query("UPDATE `users` SET `number` = '$number' WHERE `users`.`id` = '$id'");
+        $_SESSION['user']['number'] = $number;
     }
 
-    $update_adress = $connect->query("UPDATE `users` SET `adress` = '$adress' WHERE `users`.`id` = '$id'");
-    
+    $update_adress = $connect->query("UPDATE `users` SET `adress` = '$adress' WHERE `users`.`id` = '$id'");    
     $_SESSION['user']['adress'] = $adress;
-    $_SESSION['user']['number'] = $number;
-    $_SESSION['user']['full_name'] = $full_name;
+    
     
     $_SESSION['success-edit'] = 'Данные успешно изменены!';
 
