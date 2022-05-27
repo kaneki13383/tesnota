@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 *{
     list-style-type: none;
     margin: 0;
@@ -32,4 +33,40 @@ h5{
 .card{
     position: relative;
     z-index: 2;
+=======
+*{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+h5{
+    color: white;
+}
+.card{
+    border: 1px #AF3131 solid;
+}
+.menu{
+    margin-top: 5vh;
+}
+.backet{
+    margin-right: 2vw;
+}
+@media (max-width: 991px) {
+    .backet{
+        margin-bottom: 3vh;
+        margin-left: 1.5vh;
+    }
+}
+.p_buskcet{
+    position: absolute;
+    z-index: 1;
+    top: 1.1vw;
+}
+.modal-body{
+    padding: 1.4vw;
+}
+.card{
+    position: relative;
+    z-index: 2;
+>>>>>>> 6227bbcd97e95233a1c33a50c3628df651f24c98
 }
