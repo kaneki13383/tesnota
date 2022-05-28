@@ -271,7 +271,18 @@ session_start();
                     <div class="col-md-8">
                       <div class="card-body">
                         <h5 class="card-title"><?=$res['name']?></h5>
-                        <p class="card-text">Цена: <?=$res['price']?> $</p>
+                        <p class="card-text">Цена: <?=$summ = $res['price'] * $row['count']?> $</p>
+                        <p class="card-text">Кол-во: <a href="<?
+                          if($row['count'] == 1){
+                            ?>
+                              ../functions/remove_basket.php?id=<?=$row['id_order']?>
+                            <?
+                          } else{
+                            ?>
+                              ../functions/minus_product.php?id=<?=$row['id_product']?>
+                            <?
+                          }
+                        ?>" style="text-decoration: none; color: white">-</a> <?=$row['count']?> <a href="../functions/plus_product.php?id=<?=$row['id_product']?>" style="text-decoration: none; color: white">+</a></p>
                         <a href="../functions/remove_basket.php?id=<?=$row['id_order']?>" class="card-text" style="text-decoration: none; color: red;">Удалить из корзины</a>
                         <!-- <p class="card-text"><small class="text-muted">Последнее обновление 3 мин. назад</small></p> -->
                       </div>
@@ -291,8 +302,6 @@ session_start();
     </div>
   </div>
 </div>
-
-  
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
