@@ -222,6 +222,16 @@ session_start();
 
 <section class="menu">
   <div class="container">
+    <div class="sort">
+        <label for="des">Дессерты</label>
+        <input type="checkbox" name="des" id="des" >
+
+        <label for="des">Закуски</label>
+        <input type="checkbox" name="des" id="des" >
+
+        <label for="des">Напитки</label>
+        <input type="checkbox" name="des" id="des" >
+    </div>
     <div class="d-flex" style="flex-wrap: wrap; justify-content: space-evenly">
       <?
         require '../functions/connect.php';
@@ -243,8 +253,6 @@ session_start();
     </div>
   </div>  
 </section>
-
-
 
 <div class="modal" id="modalCART" tabindex="-1">
   <div class="modal-dialog">
