@@ -33,3 +33,8 @@ h5{
     position: relative;
     z-index: 2;
 }
+.sort{
+    color: white;
+    display: flex;
+    flex-direction: row;
+}
