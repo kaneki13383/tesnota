@@ -314,7 +314,7 @@
           </div>
           <div class="col-12">
             <label for="inputAddress2" class="form-label">Комментарий</label>
-            <textarea type="text" name="comm" class="form-control" style="height: 200px;" id="inputAddress2"></textarea>
+            <textarea type="text" name="comment" class="form-control" style="height: 200px;" id="inputAddress2"></textarea>
           </div>
           <div class="col-12">
             <button type="submit" style="width: 150px" class="btn ">Отправить</button>
