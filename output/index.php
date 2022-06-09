@@ -216,7 +216,7 @@
             <img class="img-fluid image-big-picture div-sec-1" src="../images/img-sec-1 1.png" alt="">
             <div class="div-sec-1">
               <h1>Кафе "Теснота"</h1>
-              <p class="lead">В тесноте, да не в обиде</p>
+              <p class="lead">Лучше в тесноте с друзьями,<br> чем одному в просторе</p>
               <a class="btn" href="./menu.php" role="button">Перейти к Меню →</a>
             </div>            
           </div>          

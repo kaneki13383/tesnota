@@ -12,7 +12,7 @@
     $password_confirm = $_POST['password_confirm'];
 
     if ($password === $password_confirm){
-        $avatar = 'avatars/' . time() . $_FILES['avatar']['name'];
+        $avatar = 'avatars/' . $_FILES['avatar']['name'];
         move_uploaded_file($_FILES['avatar']['tmp_name'], '../' . $avatar);
 
         $check_login = $connect->query("SELECT * FROM `users` WHERE `login` = '$login'");

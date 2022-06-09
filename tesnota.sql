@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Июн 01 2022 г., 09:50
--- Версия сервера: 8.0.24
--- Версия PHP: 7.4.27
+-- Время создания: Июн 09 2022 г., 12:52
+-- Версия сервера: 8.0.29
+-- Версия PHP: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,13 +34,26 @@ CREATE TABLE `cart` (
   `count` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- --------------------------------------------------------
+
 --
--- Дамп данных таблицы `cart`
+-- Структура таблицы `feedback`
 --
 
-INSERT INTO `cart` (`id_order`, `id_user`, `id_product`, `count`) VALUES
-(6, 1, 2, 3),
-(7, 1, 1, 1);
+CREATE TABLE `feedback` (
+  `id` int NOT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `surname` varchar(100) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `comment` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Дамп данных таблицы `feedback`
+--
+
+INSERT INTO `feedback` (`id`, `name`, `surname`, `email`, `comment`) VALUES
+(2, 'Юрий', 'Тишков', 'raimon123ezake@gmail.com', 'Такое себе !');
 
 -- --------------------------------------------------------
 
@@ -88,10 +101,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `full_name`, `login`, `email`, `password`, `avatar`, `adress`, `number`, `role`) VALUES
-(1, 'Куницын Даниил Олегович', 'kaneki13383', 'danchik.kun@mail.ru', '123', 'avatars/1652535945tgJqI8-J0dk.jpg', 'Ул Кубанская 17 дом 17 кв 107', '8967312786', 0),
-(2, 'Куницын Олег Геннадьевич', 'kog', 'k-o-g@mail.ru', '111', 'avatars/1652539431d3df3caa.jpg', NULL, NULL, 0),
-(3, 'Куницын Илья Олегович', 'ilya', 'kunitcyndaniil@gmail.com', '123', 'avatars/1652539507', NULL, NULL, 0),
-(5, 'Куницын Олег Геннадьевич ', 'greger', 'kog@mail.ru', '123', 'avatars/16529058351652539431d3df3caa.jpg', 'Ул Кубанская 17 дом 17 кв 107', '89673312786', 0);
+(1, 'Куницын Даниил Олегович', 'kaneki13383', 'danchik.kun@mail.ru', '123', 'avatars/1652535945tgJqI8-J0dk.jpg', 'Ул Кубанская 17 дом 17 кв 107', '8967312786', 1);
 
 --
 -- Индексы сохранённых таблиц
@@ -102,6 +112,12 @@ INSERT INTO `users` (`id`, `full_name`, `login`, `email`, `password`, `avatar`, 
 --
 ALTER TABLE `cart`
   ADD PRIMARY KEY (`id_order`);
+
+--
+-- Индексы таблицы `feedback`
+--
+ALTER TABLE `feedback`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Индексы таблицы `menu`
@@ -123,19 +139,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id_order` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_order` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT для таблицы `feedback`
+--
+ALTER TABLE `feedback`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT для таблицы `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -385,11 +385,21 @@ ul.summary-list > li:last-child  {
 }
 h3{
     color: white;
-    font-size: 1.5vw;
+    font-size: 28px;
     margin-bottom: 5vh;
     text-align: center;
     font-family: 'Book Antiqua Bold';
 }
 #edit_prof{
     display: none;
+}
+.blockquote-footer{
+    margin-top: 1vw;
+}
+@media (min-width: 992px) {
+    .card-body div{
+        display: flex;
+        flex-direction: column;
+        float: right;
+    }
 }

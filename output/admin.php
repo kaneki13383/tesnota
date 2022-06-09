@@ -65,108 +65,68 @@ if (!$_SESSION['admin']){
           </div>
 
           <ul class="nav nav-pills nav-stacked ">
-              <li id="profile" class="active"><a href="#" onclick="profile()"> <i class="fa fa-user"></i> Профиль</a></li>
-              <li id="ed_prof"><a href="#"  onclick="edit()"> <i class="fa fa-edit"></i> Редактировать профиль</a></li>
+              <li id="profile" class="active"><a href="#" onclick="profile_admin()"> <i class="fa fa-user"></i> Профиль</a></li>
+              <li id="ed_prof"><a href="#"  onclick="users()"> <i class="fa fa-edit"></i> Пользователи</a></li>
+              <li id="menu_add"><a href="#"  onclick="menu_add()"> <i class="fa fa-edit"></i> Новые блюда</a></li>
               <li><a href="../functions/logout.php"> <i class="fa fa-logout"></i> Выход</a></li>
           </ul>
       </div>
   </div>
-  <div class="profile-info col-md-9">
+  <div  class="profile-info col-md-9">
       <div class="panel">
-          <div id="edit_prof" class="container">
-          <h3>Редактировать профиль</h3>
-          <form class="row g-3" method="post" action="../functions/edit_profile.php">
-              <input class="input-none" type="text" name="id" value="<?=$_SESSION['admin']['id']?>">
-            <div class="col-md-6">
-                <label for="inputEmail4" class="form-label">ФИО</label>
-                <input type="text" name="full_name" class="form-control" id="inputEmail4" value="<?=$_SESSION['admin']['full_name']?>">
-            </div>
-            <div class="col-md-6">
-            <label for="inputAddress" class="form-label">Адрес</label>
-                <input type="text" name="adress" class="form-control" id="inputAddress" placeholder="Ул. Пушкина, Дом Колотушкина 17 подьезд 3 кв 142" value="<?
-                             if ($_SESSION['admin']['adress'] == NULL){
-                                echo 'Не указан';
-                            }
-                            else{
-                                echo $_SESSION['admin']['adress'];
-                            }                 
-                      ?>">
-            </div>
-            <div class="col-12">
-                <label for="inputAddress" class="form-label">Телефон</label>
-                <input type="text" name="number" class="form-control" id="inputAddress" placeholder="8XXXXXXXXXX" value="<?
-                            if ($_SESSION['admin']['number'] == NULL){
-                                echo 'Не указан';
-                            }
-                            else{
-                                echo $_SESSION['admin']['number'];
-                            }                  
-                      ?>">
-            </div>
-            <div class="col-12">
-                <button type="submit" class="btn ">Сохранить изменения</button>
-            </div>
-            <?php 
-                if (isset($_SESSION['error-edit'])){
+          <div id="users" style="display: none;" class="container">
+          <h3>Пользователи</h3>
+            <?
+                require '../functions/connect.php';
+                $sqli = $connect->query("SELECT * FROM `users`");
+                while($res = $sqli->fetch(PDO::FETCH_ASSOC)){
                     ?>
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <?=$_SESSION['error-edit']?>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Закрыть"></button>
+                        <div class="card bg-dark" style="color: white; margin-bottom: 25px;">
+                            <div class="card-header">
+                                <?=$res['full_name']?>
                             </div>
-                    <?
-
-                }
-                unset($_SESSION['error-edit']);
-            ?>
-            <?php 
-                if (isset($_SESSION['success-edit'])){
-                    ?>
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <?=$_SESSION['success-edit']?>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Закрыть"></button>
+                            <div class="card-body">
+                                <blockquote class="blockquote mb-0">
+                                <img src="<?
+                                    if($res['avatar'] === 'avatars/'){
+                                        echo '../images/noavatar.png';
+                                    }
+                                    else{
+                                        echo "/{$res['avatar']}";
+                                    }
+                                ?>" width="110" height="110" style="border-radius: 50%;" alt="">
+                                <div>
+                                    <p>Логин: <?=$res['login']?></p>
+                                    <p>Адрес: <?if ($res['adress'] === 'avatars/'){
+                                                    echo 'Не указан';
+                                                    }
+                                                    else{
+                                                        echo $res['adress'];
+                                                    }     ?></p>
+                                    <p>Номер телефона: <?if ($res['number'] == NULL){
+                                                    echo 'Не указан';
+                                                    }
+                                                    else{
+                                                        echo $res['number'];
+                                                    }     ?></p>
+                                    <p>Роль: <?if ($res['role'] == 1){
+                                        echo 'Администратор';
+                                    }
+                                    else{
+                                        echo 'Пользователь';
+                                    }
+                                    ?></p>
+                                </div>                                
+                                <footer class="blockquote-footer"><?=$res['email']?></footer>
+                                <a href="../functions/delete_user.php?id=<?=$res['id']?>" class="btn">Удалить</a>
+                                </blockquote>
                             </div>
-                    <?
-
-                }
-                unset($_SESSION['success-edit']);
-            ?>
-          </form>
-          <form action="../functions/change_avatar.php" enctype="multipart/form-data" method="post" class="row g-3">
-            <h3>Изменить аватар</h3>
-            <div class="col-md-6">
-                <input type="text" class="input-none" value="<?=$_SESSION['admin']['id']?>">
-                <input type="file" name="avatar" class="form-control" id="formFile">
-            </div>
-            <div class="col-md-6">
-                <button type="submit" class="btn">Изменить</button>
-            </div>
-            <?php 
-                if (isset($_SESSION['avatar-error'])){
-                    ?>
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <?=$_SESSION['avatar-error']?>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Закрыть"></button>
                             </div>
+                        
                     <?
-
                 }
-                unset($_SESSION['avatar-error']);
-            ?>
-            <?php 
-                if (isset($_SESSION['avatar-success'])){
-                    ?>
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <?=$_SESSION['avatar-success']?>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Закрыть"></button>
-                            </div>
-                    <?
-
-                }
-                unset($_SESSION['avatar-success']);
-            ?>
-          </form>
-            
-          </div>
+            ?></div>
+           </div>
           <div id="biograph" class="panel-body bio-graph-info">
               <h3>Ваши данные</h3>
               <div class="row">
@@ -208,9 +168,44 @@ if (!$_SESSION['admin']){
                   </div>
               </div>
           </div>
+
+          <div id="form_menu" style="display: none;">
+          <h3>Добавить новое блюдо</h3>
+            <form action="../functions/add_menu.php" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label">Название блюда или напитка</label>
+                <input type="text" class="form-control" name="name" id="formGroupExampleInput" placeholder="">
+            </div>
+            <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Фотография блюда или напитка</label>
+                <input type="file" class="form-control" name="img" id="formGroupExampleInput2" placeholder="">
+            </div>
+            <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Описание блюда</label>
+                <textarea type="text" class="form-control" name="discription" id="formGroupExampleInput2" placeholder=""></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label">Стоимость</label>
+                <input type="text" class="form-control" name="price" id="formGroupExampleInput" placeholder="">
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" value="dessert" name="type" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Дессерт
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" value="snacks" name="type" id="flexCheckChecked">
+                <label class="form-check-label" for="flexCheckChecked">
+                    Закуски
+                </label>
+            </div>
+            <button type="submit" class="btn">Добавить</button>
+            </form>
+          </div>
       </div>
 
-      <div class="container">
+      <div id="order" class="container">
           <h3>Отзывы</h3>
         <?
             require '../functions/connect.php';
@@ -225,6 +220,7 @@ if (!$_SESSION['admin']){
                         <blockquote class="blockquote mb-0">
                         <p><?=$row['comment']?></p>
                         <footer class="blockquote-footer"><?=$row['email']?></footer>
+                        <a href="../functions/delete_order.php?id=<?=$row['id']?>" class="btn">Удалить</a>
                         </blockquote>
                     </div>
                     </div>
@@ -250,13 +246,22 @@ if (!$_SESSION['admin']){
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="../js/edit_profile.js"></script>
     <?php
-        if($_SESSION['error'] == 1){
+        if($_SESSION['error'] === 1){
             ?>
                 <script>
                     edit();
                 </script>
             <?php
             $_SESSION['error'] = 0;
+        }
+        echo $_SESSION['error-del-user'];
+        if($_SESSION['error-del-user'] === 1){
+            ?>
+                <script>
+                    users();
+                </script>
+            <?php
+            $_SESSION['error-del-user'] = 0;
         }
 
         if ($_SESSION['error-remove'] === 1){
@@ -268,6 +273,11 @@ if (!$_SESSION['admin']){
             <?
             $_SESSION['error-remove'] = 0;
           }
+
+          if($_SESSION['menu_add'] === 1){
+              ?><script>menu_add();</script><?
+          }
+          $_SESSION['menu_add'] = 0;
     ?>
 </body>
 </html>

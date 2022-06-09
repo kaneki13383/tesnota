@@ -3,7 +3,7 @@
     
     require_once('./connect.php');
 
-    $new_avatar = 'avatars/' . time() . $_FILES['avatar']['name'];
+    $new_avatar = 'avatars/' . $_FILES['avatar']['name'];
 
     if (!move_uploaded_file($_FILES['avatar']['tmp_name'], "../" . $new_avatar)){
         $_SESSION['avatar-error'] = "Ошибка загрузки аватарки!";

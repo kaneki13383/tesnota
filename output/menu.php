@@ -223,14 +223,16 @@ session_start();
 <section class="menu">
   <div class="container">
     <div class="sort">
+      <form action="">
         <label for="des">Дессерты</label>
-        <input type="checkbox" name="des" id="des" >
+        <input onclick="dessert()" value="1" name="1" type="radio">
 
-        <label for="des">Закуски</label>
-        <input type="checkbox" name="des" id="des" >
+        <label for="snac">Закуски</label>
+        <input onclick="snacks()" value="2" name="1" type="radio">
 
         <label for="des">Напитки</label>
-        <input type="checkbox" name="des" id="des" >
+        <input value="3" name="1" type="radio">
+        </form>
     </div>
     <div class="d-flex" style="flex-wrap: wrap; justify-content: space-evenly">
       <?
@@ -238,7 +240,7 @@ session_start();
         $sql = $connect->query("SELECT * FROM `menu`");
         while($row = $sql->fetch(PDO::FETCH_ASSOC)){
           ?>
-            <div class="card bg-dark" style="width: 18rem;">
+            <div id="<?=$row['type']?>" class="card bg-dark" style="width: 18rem;">
               <img src="<?='/'.$row['img']?>" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title"><?=$row['name']?></h5>
@@ -312,6 +314,7 @@ session_start();
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="../js/sort.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <?php
       if($_SESSION['error-login'] === 1){
