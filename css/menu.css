@@ -35,6 +35,27 @@ h5{
 }
 .sort{
     color: white;
+}
+.first-div-sort{
     display: flex;
     flex-direction: row;
+}
+.first-div-sort:hover{
+    cursor: pointer;
+}
+.first-div-sort p{
+    font-size: 1.2vw;
+}
+.first-div-sort img{
+    margin-left: 0.5vw;
+    width: 2vw;
+    height: 2vw;
+}
+.sort form{
+    display: flex;
+    flex-direction: column;
+}
+.sort form{
+    opacity: 0;
+    transition: 400ms;
 }

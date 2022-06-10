@@ -223,15 +223,28 @@ session_start();
 <section class="menu">
   <div class="container">
     <div class="sort">
-      <form action="">
-        <label for="des">Дессерты</label>
-        <input onclick="dessert()" value="1" name="1" type="radio">
-
-        <label for="snac">Закуски</label>
-        <input onclick="snacks()" value="2" name="1" type="radio">
-
-        <label for="des">Напитки</label>
-        <input value="3" name="1" type="radio">
+      <div onclick="click4()" class="first-div-sort">
+        <p>Фильтры</p>
+        <img src="/images/filter.png" alt="">
+      </div>
+      <form action=""></form>
+      <form action="" method="POST">
+        <div>
+          <input onclick="dessert()" value="1" name="1" type="radio">
+          <label for="des">Дессерты</label>
+        </div>
+        <div>
+          <input onclick="snacks()" value="2" name="1" type="radio">
+          <label for="snac">Закуски</label>
+        </div>
+        <div>
+          <input value="3" name="1" type="radio">
+          <label for="des">Напитки</label>
+        </div>
+        <div>
+          <input onclick="clear1()" value="4" name="1" type="radio">
+          <label for="clear">Сбросить фильтры</label>
+        </div>
         </form>
     </div>
     <div class="d-flex" style="flex-wrap: wrap; justify-content: space-evenly">
