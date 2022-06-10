@@ -44,12 +44,12 @@ h5{
     cursor: pointer;
 }
 .first-div-sort p{
-    font-size: 1.2vw;
+    font-size: 22.5px;
 }
 .first-div-sort img{
     margin-left: 0.5vw;
-    width: 2vw;
-    height: 2vw;
+    width: 38px;
+    height: 38px;
 }
 .sort form{
     display: flex;
@@ -58,4 +58,12 @@ h5{
 .sort form{
     opacity: 0;
     transition: 400ms;
+}
+.card{
+    margin-bottom: 30px;
+}
+.card-style{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }

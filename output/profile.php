@@ -58,7 +58,14 @@ if (!$_SESSION['user']){
       <div class="panel">
           <div class="user-heading round">
               <a href="#">
-                  <img src="<?='/' . $_SESSION['user']['avatar']?>" alt="">
+                  <img src="<?
+                                if($_SESSION['user']['avatar'] === 'avatars/'){
+                                    echo '../images/noavatar.png';
+                                }
+                                else{
+                                    echo "/{$_SESSION['user']['avatar']}";
+                                }
+                            ?>" alt="">
               </a>
               <h1><?=$_SESSION['user']['full_name']?></h1>
               <p><?=$_SESSION['user']['email']?></p>

@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 ?>
 <!DOCTYPE html>
@@ -14,7 +14,7 @@ session_start();
 </head>
 <body class="bg-dark">
 <?php 
-  if(!$_SESSION['user']){ ?>
+  if(!$_SESSION['user'] && !$_SESSION['admin']){ ?>
     <header>
     <nav class="navbar navbar-expand-lg navbar-dark" id="navheader">
         <div class="container">
@@ -70,7 +70,14 @@ session_start();
                 <a class="nav-link" href="#">О нас</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="./profile.php">Профиль</a>
+                <a class="nav-link" href="<?
+                  if($_SESSION['admin']){
+                    echo './admin.php';
+                  }
+                  elseif($_SESSION['user']){
+                    echo './profile.php';
+                  }
+                ?>">Профиль</a>
               </li>
             </ul>            
             <button type="button" class="btn btn_backet" data-bs-toggle="modal" style="border: none; background-color: transparent;" data-bs-target="#modalCART">
@@ -231,19 +238,19 @@ session_start();
       <form action="" method="POST">
         <div>
           <input onclick="dessert()" value="1" name="1" type="radio">
-          <label for="des">Дессерты</label>
+          <label onclick="dessert()" for="des">Дессерты</label>
         </div>
         <div>
           <input onclick="snacks()" value="2" name="1" type="radio">
-          <label for="snac">Закуски</label>
+          <label onclick="snacks()" for="snac">Закуски</label>
         </div>
         <div>
-          <input value="3" name="1" type="radio">
-          <label for="des">Напитки</label>
+          <input onclick="drinks()" value="3" name="1" type="radio">
+          <label onclick="drinks()" for="dri">Напитки</label>
         </div>
         <div>
           <input onclick="clear1()" value="4" name="1" type="radio">
-          <label for="clear">Сбросить фильтры</label>
+          <label onclick="clear1()" for="clear">Сбросить фильтры</label>
         </div>
         </form>
     </div>
@@ -254,12 +261,31 @@ session_start();
         while($row = $sql->fetch(PDO::FETCH_ASSOC)){
           ?>
             <div id="<?=$row['type']?>" class="card bg-dark" style="width: 18rem;">
-              <img src="<?='/'.$row['img']?>" class="card-img-top" alt="...">
-              <div class="card-body">
+              <img src="<?='/'.$row['img']?>" height="220px" class="card-img-top" alt="...">
+              <div class="card-body card-style">
                 <h5 class="card-title"><?=$row['name']?></h5>
                 <p class="card-text"><?=$row['discription']?></p>
-                <p class="card-price"><?=$row['price']?> $</p>
-                <a href="../functions/add_basket.php?id=<?=$row['id']?>" class="btn">В корзину</a>
+                <div style="display: flex;justify-content: space-between;align-items: baseline;">
+                  <p class="card-price"><?=$row['price']?> ₽ / <?
+                    if($row['type'] == 'drinks'){
+                      echo 'за 100мл';
+                    }else{
+                      echo 'за порцию';
+                    }
+                  ?></p>
+                  <?
+                    if($_SESSION['user']){
+                      ?><a href="../functions/add_basket.php?id=<?=$row['id']?>" class="btn">В корзину</a><?
+                    }
+                  ?>
+                  <?
+                  if($_SESSION['admin']){
+                    ?>
+                      <a href="../functions/del_menu.php?id=<?=$row['id']?>"><img src="../images/delete.png" alt=""></a>
+                    <?
+                  }
+                ?>
+                </div>                
               </div>
             </div>
           <?
@@ -294,7 +320,7 @@ session_start();
                     <div class="col-md-8">
                       <div class="card-body">
                         <h5 class="card-title"><?=$res['name']?></h5>
-                        <p class="card-text">Цена: <?=$summ = $res['price'] * $row['count']?> $</p>
+                        <p class="card-text">Цена: <?=$summ = $res['price'] * $row['count']?> ₽</p>
                         <p class="card-text">Кол-во: <a href="<?
                           if($row['count'] == 1){
                             ?>
@@ -306,8 +332,7 @@ session_start();
                             <?
                           }
                         ?>" style="text-decoration: none; color: white">-</a> <?=$row['count']?> <a href="../functions/plus_product.php?id=<?=$row['id_product']?>" style="text-decoration: none; color: white">+</a></p>
-                        <a href="../functions/remove_basket.php?id=<?=$row['id_order']?>" class="card-text" style="text-decoration: none; color: red;">Удалить из корзины</a>
-                        <!-- <p class="card-text"><small class="text-muted">Последнее обновление 3 мин. назад</small></p> -->
+                        <a href="../functions/remove_basket.php?id=<?=$row['id_order']?>" class="card-text"><img src="../images/delete.png" alt=""></a>
                       </div>
                     </div>
                   </div>

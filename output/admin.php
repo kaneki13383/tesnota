@@ -68,7 +68,7 @@ if (!$_SESSION['admin']){
               <li id="profile" class="active"><a href="#" onclick="profile_admin()"> <i class="fa fa-user"></i> Профиль</a></li>
               <li id="ed_prof"><a href="#"  onclick="users()"> <i class="fa fa-edit"></i> Пользователи</a></li>
               <li id="menu_add"><a href="#"  onclick="menu_add()"> <i class="fa fa-edit"></i> Новые блюда</a></li>
-              <li><a href="../functions/logout.php"> <i class="fa fa-logout"></i> Выход</a></li>
+              <li><a href="../functions/logout_admin.php"> <i class="fa fa-logout"></i> Выход</a></li>
           </ul>
       </div>
   </div>
@@ -182,7 +182,7 @@ if (!$_SESSION['admin']){
             </div>
             <div class="mb-3">
                 <label for="formGroupExampleInput2" class="form-label">Описание блюда</label>
-                <textarea type="text" class="form-control" name="discription" id="formGroupExampleInput2" placeholder=""></textarea>
+                <textarea type="text" class="form-control" name="discription" rows="6" id="formGroupExampleInput2" placeholder=""></textarea>
             </div>
             <div class="mb-3">
                 <label for="formGroupExampleInput" class="form-label">Стоимость</label>
@@ -198,6 +198,12 @@ if (!$_SESSION['admin']){
                 <input class="form-check-input" type="radio" value="snacks" name="type" id="flexCheckChecked">
                 <label class="form-check-label" for="flexCheckChecked">
                     Закуски
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" value="drinks" name="type" id="flexCheckChecked">
+                <label class="form-check-label" for="flexCheckChecked">
+                    Напитки
                 </label>
             </div>
             <button type="submit" class="btn">Добавить</button>
@@ -254,14 +260,14 @@ if (!$_SESSION['admin']){
             <?php
             $_SESSION['error'] = 0;
         }
-        echo $_SESSION['error-del-user'];
-        if($_SESSION['error-del-user'] === 1){
+
+        if($_SESSION['del-user'] === 1){
             ?>
                 <script>
                     users();
                 </script>
             <?php
-            $_SESSION['error-del-user'] = 0;
+            $_SESSION['del-user'] = 0;
         }
 
         if ($_SESSION['error-remove'] === 1){
@@ -274,10 +280,10 @@ if (!$_SESSION['admin']){
             $_SESSION['error-remove'] = 0;
           }
 
-          if($_SESSION['menu_add'] === 1){
+          if($_SESSION['add_menu'] === 1){
               ?><script>menu_add();</script><?
           }
-          $_SESSION['menu_add'] = 0;
+          $_SESSION['add_menu'] = 0;
     ?>
 </body>
 </html>

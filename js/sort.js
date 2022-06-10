@@ -4,7 +4,7 @@ function snacks() {
     havchik.forEach(eat =>{
         eat.style.display = 'none';
         if(eat.id === 'snacks'){
-            eat.style.display = 'block';
+            eat.style.display = 'flex';
         }
     })
 }
@@ -13,14 +13,23 @@ function dessert() {
     havchik.forEach(eat =>{
         eat.style.display = 'none';
         if(eat.id === 'dessert'){
-            eat.style.display = 'block';
+            eat.style.display = 'flex';
+        }
+    })
+}
+
+function drinks() {
+    havchik.forEach(eat =>{
+        eat.style.display = 'none';
+        if(eat.id === 'drinks'){
+            eat.style.display = 'flex';
         }
     })
 }
 
 function clear1(){
     havchik.forEach(eat =>{
-        eat.style.display = 'block';
+        eat.style.display = 'flex';
     })
     console.log('asjfdhasf')
 }

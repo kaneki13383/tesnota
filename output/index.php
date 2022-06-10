@@ -15,7 +15,7 @@
 <body class="bg-dark" id="body">
 
 <?php 
-  if(!$_SESSION['user']){ ?>
+  if(!$_SESSION['user'] && !$_SESSION['admin']){ ?>
     <header>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="navheader">
         <div class="container">
@@ -71,7 +71,14 @@
                 <a class="nav-link" href="#">О нас</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="./profile.php">Профиль</a>
+                <a class="nav-link" href="<?
+                  if($_SESSION['admin']){
+                    echo './admin.php';
+                  }
+                  elseif($_SESSION['user']){
+                    echo './profile.php';
+                  }
+                ?>">Профиль</a>
               </li>
             </ul>
             <button type="button" class="btn btn_backet" data-bs-toggle="modal" style="border: none; background-color: transparent;" data-bs-target="#modalCART">
@@ -237,22 +244,20 @@
         <div class="container">
           <h2>Популярные товары</h2>
           <div class="d-flex pop-flex">
-          <figure class="figure">
-            <img src="../images/image 4.png" style="width: 400px;" class="figure-img img-fluid rounded" alt="...">
-            <figcaption class="figure-caption">Баранья корейка в духовке</figcaption>
-          </figure>
-          <figure class="figure">
-            <img src="../images/image 5.png" style="width: 400px; height: 306.36px" class="figure-img img-fluid rounded" alt="...">
-            <figcaption class="figure-caption">Тигровые креветки в томатном соусе</figcaption>
-          </figure>
-          <figure class="figure">
-            <img src="../images/image 12.png" style="width: 400px; height: 306.36px" class="figure-img img-fluid rounded" alt="...">
-            <figcaption class="figure-caption">Тальятта из говядины</figcaption>
-          </figure>
-          <figure class="figure">
-            <img src="../images/image 14.png" style="width: 400px; height: 306.36px" class="figure-img img-fluid rounded" alt="...">
-            <figcaption class="figure-caption">Суп Том Ян</figcaption>
-          </figure>
+          <?
+            require '../functions/connect.php';
+            $sql = $connect->query("SELECT * FROM `menu` ORDER BY id LIMIT 6");
+            while($row = $sql->fetch(PDO::FETCH_ASSOC)){
+              ?>
+                <figure class="figure">
+                  <img src="<?='/'.$row['img']?>" style="width: 400px;" class="figure-img img-fluid rounded" alt="...">
+                  <figcaption class="figure-caption"><?=$row['name']?></figcaption>
+                </figure>
+              <?
+            }
+          ?>
+
+          
           </div>
         </div>
       </section>
@@ -362,7 +367,7 @@
                       <div class="col-md-8">
                         <div class="card-body">
                           <h5 class="card-title"><?=$res['name']?></h5>
-                          <p class="card-text">Цена: <?=$res['price']?> $</p>
+                          <p class="card-text">Цена: <?=$res['price']?> ₽</p>
                           <a href="../functions/remove_basket.php?id=<?=$row['id_order']?>" class="card-text" style="text-decoration: none; color: red;">Удалить из корзины</a>
                           <!-- <p class="card-text"><small class="text-muted">Последнее обновление 3 мин. назад</small></p> -->
                         </div>
