@@ -31,8 +31,14 @@ function clear1(){
     havchik.forEach(eat =>{
         eat.style.display = 'flex';
     })
-    console.log('asjfdhasf')
 }
+
+// function clear2(){
+//     havchik.forEach(eat =>{
+//         eat.style.display = 'none';
+//     })
+// }
+
 let i = false;
 function click4(){
     if(i == false){

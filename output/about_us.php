@@ -39,7 +39,7 @@
             </ul>
             <form class="d-flex">
                 <input class="form-control me-2 search" type="search" placeholder="Поиск" aria-label="Поиск">
-                <button class="btn search-logo" type="submit"><img src="../images/search.png" alt=""></button>
+                <button class="btn" style="margin-right: 20px;" type="submit"><img src="../images/search.png" alt=""></button>
             </form>
             <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModalToggle">
                 Войти
@@ -51,7 +51,7 @@
   }
   else{?>
     <header>
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="navheader">
+    <nav class="navbar navbar-expand-lg navbar-dark" id="navheader">
         <div class="container">
           <a class="navbar-brand" href="./index.php">
               <img src="../images/logo.png" class="img-fluid" style="width: 200px;" alt="">
@@ -86,7 +86,7 @@
             </button>
             <form class="d-flex">
                 <input class="form-control me-2 search" type="search" placeholder="Поиск" aria-label="Поиск">
-                <button class="btn search-logo" type="submit"><img src="../images/search.png" alt=""></button>
+                <button class="btn" style="margin-right: 20px;" type="submit"><img src="../images/search.png" alt=""></button>
             </form>
           </div>
         </div>
