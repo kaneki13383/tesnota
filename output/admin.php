@@ -34,7 +34,7 @@ if (!$_SESSION['admin']){
                     <a class="nav-link" href="./menu.php">Меню</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">О нас</a>
+                    <a class="nav-link" href="./about_us.php">О нас</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link active" href="#">Профиль</a>

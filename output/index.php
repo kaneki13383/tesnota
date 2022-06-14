@@ -34,7 +34,7 @@
                 <a class="nav-link" href="./menu.php">Меню</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">О нас</a>
+                <a class="nav-link" href="./about_us.php">О нас</a>
               </li>
             </ul>
             <form class="d-flex">
@@ -68,7 +68,7 @@
                 <a class="nav-link" href="./menu.php">Меню</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">О нас</a>
+                <a class="nav-link" href="./about_us.php">О нас</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="<?
@@ -250,7 +250,7 @@
             while($row = $sql->fetch(PDO::FETCH_ASSOC)){
               ?>
                 <figure class="figure">
-                  <img src="<?='/'.$row['img']?>" style="width: 400px;" class="figure-img img-fluid rounded" alt="...">
+                  <img src="<?='/'.$row['img']?>" style="width: 400px; height: 310px;" class="figure-img img-fluid rounded" alt="...">
                   <figcaption class="figure-caption"><?=$row['name']?></figcaption>
                 </figure>
               <?
@@ -331,12 +331,12 @@
       <nav class="navbar footer_navbar navbar-light bg-dark">
         <div class="container">
           <li>
-            <a class="navbar-brand" href="#"><img src="../images/logo.png" width="200px" alt=""></a>
+            <a class="navbar-brand" href="#"><img style="margin-bottom: 16px;" src="../images/logo.png" width="200px" alt=""></a>
             <p class="lead">©Гавкошмыг corporation</p>
           </li>
           <li>
-            <p class="lead">8 (967) 331 37-86</p>
-            <p class="lead">danchik.kun@mail.ru</p>
+            <p class="lead"><img src="../images/-.png" alt=""> 8 (967) 331 37-86</p>
+            <p class="lead"><img src="../images/mail.png" alt="">  danchik.kun@mail.ru</p>
           </li>
         </div>
       </nav>

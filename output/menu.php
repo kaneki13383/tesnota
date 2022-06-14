@@ -10,7 +10,7 @@ session_start();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/menu.css">
     <link rel="stylesheet" href="../css/style.css">
-    <title>Menu</title>
+    <title>Меню</title>
 </head>
 <body class="bg-dark">
 <?php 
@@ -33,7 +33,7 @@ session_start();
                 <a class="nav-link active" href="./menu.php">Меню</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">О нас</a>
+                <a class="nav-link" href="./about_us.php">О нас</a>
               </li>
             </ul>
             <form class="d-flex">
@@ -67,7 +67,7 @@ session_start();
                 <a class="nav-link active" href="./menu.php">Меню</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">О нас</a>
+                <a class="nav-link" href="./about_us.php">О нас</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="<?
@@ -229,6 +229,7 @@ session_start();
 
 <section class="menu">
   <div class="container">
+  <h1 style="text-align: center; font-size: 50px; margin-bottom: 50px">Меню</h1>
     <div class="sort">
       <div onclick="click4()" class="first-div-sort">
         <p>Фильтры</p>
@@ -350,6 +351,21 @@ session_start();
     </div>
   </div>
 </div>
+
+<footer>
+      <nav class="navbar footer_navbar navbar-light bg-dark">
+        <div class="container">
+          <li>
+            <a class="navbar-brand" href="#"><img style="margin-bottom: 16px;" src="../images/logo.png" width="200px" alt=""></a>
+            <p class="lead">©Гавкошмыг corporation</p>
+          </li>
+          <li>
+            <p class="lead"><img src="../images/-.png" alt=""> 8 (967) 331 37-86</p>
+            <p class="lead"><img src="../images/mail.png" alt="">  danchik.kun@mail.ru</p>
+          </li>
+        </div>
+      </nav>
+      </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="../js/sort.js"></script>

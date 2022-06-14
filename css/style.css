@@ -182,3 +182,12 @@ form{
     position: relative;
     z-index: 2;
 }
+.about{
+    margin-top: 20px;
+    margin-bottom: 50px;
+    font-size: 37px;
+    font-weight: bold;
+}
+.img-2{
+    width: 600px; 
+}
