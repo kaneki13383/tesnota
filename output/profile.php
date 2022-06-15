@@ -19,7 +19,7 @@ if (!$_SESSION['user']){
 <header>
         <nav class="navbar navbar-expand-lg navbar-dark" id="navheader">
             <div class="container">
-              <a class="navbar-brand" href="./index.php">
+              <a class="navbar-brand" href="./index">
                   <img src="../images/logo.png" class="img-fluid" style="width: 200px;" alt="">
                 </a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Переключатель навигации">
@@ -28,10 +28,10 @@ if (!$_SESSION['user']){
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="./index.php">Главная</a>
+                    <a class="nav-link" aria-current="page" href="./index">Главная</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="./menu.php">Меню</a>
+                    <a class="nav-link" href="./menu">Меню</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#">О нас</a>

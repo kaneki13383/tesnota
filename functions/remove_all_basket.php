@@ -8,4 +8,4 @@
 
     $_SESSION['error-remove'] = 1;
 
-    header("Location: ../output/menu.php");
+    header("Location: ../output/menu");

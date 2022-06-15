@@ -11,7 +11,7 @@
     $check_full_name = $connect->query("SELECT `full_name` FROM `users` WHERE `id` = '$id'");
     $response2 = $check_full_name->fetch(PDO::FETCH_ASSOC);
     if($response2['full_name'] == $full_name){
-        header('Location: ../output/profile.php');
+        header('Location: ../output/profile');
         $_SESSION['error'] = 1;
     }
     else{
@@ -22,7 +22,7 @@
     $check_number = $connect->query("SELECT `number` FROM `users` WHERE `id` = '$id'");
     $response = $check_number->fetch(PDO::FETCH_ASSOC);
     if($response['number'] == $number){
-        header('Location: ../output/profile.php'); 
+        header('Location: ../output/profile'); 
         $_SESSION['error'] = 1;
     }
     else{
@@ -36,5 +36,5 @@
     
     $_SESSION['success-edit'] = 'Данные успешно изменены!';
 
-    header("Location: ../output/profile.php");
+    header("Location: ../output/profile");
     $_SESSION['error'] = 1;

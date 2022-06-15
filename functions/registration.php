@@ -19,7 +19,7 @@
         $response = $check_login->fetch(PDO::FETCH_ASSOC);
         if ($response['login']){
             $_SESSION['message1'] = 'Этот логин занят, придумайте другой!';
-            header("Location: ../output/index.php");
+            header("Location: ../output/index");
             $_SESSION['error-registration'] = 1;
         }
         else{
@@ -28,20 +28,20 @@
             $response1 = $check_email->fetch(PDO::FETCH_ASSOC);
             if($response1['email']){
                 $_SESSION['message1'] = 'Такая почта уже используется, введите свою почту!';
-                header('Location: ../output/index.php'); 
+                header('Location: ../output/index'); 
                 $_SESSION['error-registration'] = 1;
             }
             else{
                 $add_user = $connect->query("INSERT INTO `users`(`id`, `full_name`, `login`, `email`, `avatar`, `password`) VALUES (NULL, '$full_name','$login','$email','$avatar','$password')");
                 // $add_user->execute();
                 $_SESSION['message2'] = 'Регистрация прошла успешно!';
-                header('Location: ../output/index.php');
+                header('Location: ../output/index');
                 $_SESSION['error-registration'] = 1;
             }
         }
     }
     else{
         $_SESSION['message1'] = 'Пароли не совпадают!';
-        header('Location: ../output/index.php'); 
+        header('Location: ../output/index'); 
         $_SESSION['error-registration'] = 1;
     }

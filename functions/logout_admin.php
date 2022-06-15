@@ -1,4 +1,4 @@
 <?php
     session_start();
     unset($_SESSION['admin']);
-    header('Location: ../output/index.php');
+    header('Location: ../output/index');

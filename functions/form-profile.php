@@ -17,4 +17,4 @@ $_SESSION['user']['adress'] = $adress;
 
 $_SESSION['message-form-profile'] = 'Изменения сохранены!'; 
 
-header("Location: ../output/profile.php");
+header("Location: ../output/profile");

@@ -10,4 +10,4 @@ $email = $_POST['email'];
 $comment = $_POST['comment'];
 
 $sql = $connect->query("INSERT INTO `feedback` (`name`, `surname`, `email`, `comment`) VALUES ('$name', '$surname', '$email', '$comment')");
-header("Location: ../output/index.php");
+header("Location: ../output/index");

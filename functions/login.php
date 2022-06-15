@@ -23,7 +23,7 @@
                 "number" => $user['number'],
                 "role" => $user['role']
             ];
-            header("Location: ../output/admin.php");
+            header("Location: ../output/admin");
             $_SESSION['error-login'] = 0;
         }
         else{
@@ -37,14 +37,14 @@
                 "number" => $user['number'],
                 "role" => $user['role']
             ];
-            header("Location: ../output/profile.php");
+            header("Location: ../output/profile");
             $_SESSION['error-login'] = 0;
         }        
     } 
     else{
         $_SESSION['message'] = 'Невереный логин или пароль!';
         
-        header("Location: ../output/index.php");
+        header("Location: ../output/index");
         $_SESSION['error-login'] = 1;
     }
 ?>
