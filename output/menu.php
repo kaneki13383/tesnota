@@ -36,9 +36,9 @@ session_start();
                 <a class="nav-link" href="./about_us">О нас</a>
               </li>
             </ul>
-            <form class="d-flex" method="GET" action="../functions/search.php">
-                <input class="form-control me-2 search" type="search" placeholder="Поиск" aria-label="Поиск">
-                <button class="btn" onclick="clear2()" style="margin-right: 20px;" type="submit"><img src="../images/search.png" alt=""></button>
+            <form class="d-flex" action="../output/search_res" method="GET">
+                <input class="form-control me-2 search" style="width: 250px;" type="search" name="search" placeholder="Поиск" aria-label="Поиск">
+                <button class="btn" style="margin-right: 20px; margin-left: -10px;" type="submit"><img src="../images/search.png" alt=""></button>
             </form>
             <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModalToggle">
                 Войти
@@ -83,9 +83,9 @@ session_start();
             <button type="button" class="btn btn_backet" data-bs-toggle="modal" style="border: none; background-color: transparent;" data-bs-target="#modalCART">
               <img src="../images/basket.png" alt="" class="backet">
             </button>
-            <form class="d-flex" method="GET" action="">
-                <input class="form-control me-2 search" type="search" placeholder="Поиск" aria-label="Поиск">
-                <button class="btn" style="margin-right: 20px;" type="submit"><img src="../images/search.png" alt=""></button>
+            <form class="d-flex" action="../output/search_res" method="GET">
+                <input class="form-control me-2 search" style="width: 250px;" type="search" name="search" placeholder="Поиск" aria-label="Поиск">
+                <button class="btn" style="margin-right: 20px; margin-left: -10px;" type="submit"><img src="../images/search.png" alt=""></button>
             </form>
           </div>
         </div>
@@ -228,7 +228,7 @@ session_start();
       </div>
 
 <section class="menu">
-  <div class="container">
+  <div class="container">   
   <h1 style="text-align: center; font-size: 50px; margin-bottom: 50px">Меню</h1>
     <div class="sort">
       <div onclick="click4()" class="first-div-sort">

@@ -1,5 +1,11 @@
 <?php
-  session_start();
+session_start();
+
+require '../functions/connect.php';
+
+$search = $_GET['search'];
+
+$sql = $connect->query("SELECT * FROM `menu` WHERE `name` LIKE '%$search%'");
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -8,12 +14,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/menu.css">
     <link rel="stylesheet" href="../css/style.css">
-    
-    <title>О нас</title>
+    <title>Меню</title>
 </head>
-<body class="bg-dark" id="body">
-
+<body class="bg-dark">
 <?php 
   if(!$_SESSION['user'] && !$_SESSION['admin']){ ?>
     <header>
@@ -31,16 +36,19 @@
                 <a class="nav-link" aria-current="page" href="./index">Главная</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="./menu">Меню</a>
+                <a class="nav-link active" href="./menu">Меню</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="./about_us">О нас</a>
+                <a class="nav-link" href="./about_us">О нас</a>
               </li>
             </ul>
             <form class="d-flex" action="../output/search_res" method="GET">
                 <input class="form-control me-2 search" style="width: 250px;" type="search" name="search" placeholder="Поиск" aria-label="Поиск">
                 <button class="btn" style="margin-right: 20px; margin-left: -10px;" type="submit"><img src="../images/search.png" alt=""></button>
             </form>
+            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModalToggle">
+                Войти
+            </button>
           </div>
         </div>
       </nav>
@@ -62,10 +70,10 @@
                 <a class="nav-link" aria-current="page" href="./index">Главная</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="./menu">Меню</a>
+                <a class="nav-link active" href="./menu">Меню</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="./about_us">О нас</a>
+                <a class="nav-link" href="./about_us">О нас</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="<?
@@ -77,11 +85,11 @@
                   }
                 ?>">Профиль</a>
               </li>
-            </ul>
+            </ul>            
             <button type="button" class="btn btn_backet" data-bs-toggle="modal" style="border: none; background-color: transparent;" data-bs-target="#modalCART">
               <img src="../images/basket.png" alt="" class="backet">
             </button>
-            <form class="d-flex" action="../output/search_res" method="GET">
+            <form class="d-flex" action="" method="GET">
                 <input class="form-control me-2 search" style="width: 250px;" type="search" name="search" placeholder="Поиск" aria-label="Поиск">
                 <button class="btn" style="margin-right: 20px; margin-left: -10px;" type="submit"><img src="../images/search.png" alt=""></button>
             </form>
@@ -92,10 +100,21 @@
 <?
   }
 ?>
-    <a class="back_to_top" href="#" id="btt" title="Наверх">↑</a>
 
-    <!-- Модальное окно -->
-    <div id="god_div"></div>
+<?php 
+    if (isset($_SESSION['message1'])){
+        ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <?=$_SESSION['message1']?>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Закрыть"></button>
+            </div>
+        <?
+    }
+    unset($_SESSION['message1']);
+?>
+
+<!-- Модальное окно -->
+<div id="god_div"></div>
     <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content bg-dark">
@@ -196,7 +215,7 @@
                   <?php 
                     if (isset($_SESSION['message2'])){
                         ?>
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                 <?=$_SESSION['message2']?>
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Закрыть"></button>
                                 </div>
@@ -214,37 +233,114 @@
         </div>
       </div>
 
-      <section style="margin-top: 50px;">
-        <div class="container" style="color: white;">
-        <h1 style="text-align: center; font-size: 50px; margin-bottom: 50px">О нас</h1>
-            <div class="row d-flex about_flex">
-                <div class="col">
-                        <img src="../images/9f817ffb7627fc8c7fac7d4f4daf339d.jpg" class="img-fluid" alt="">
-                </div>
-                <div class="col">
-                    <h3 class="about">Почему именно мы?</h3>
-                    <p class="lead">Потому, что у нас только свежие продукты, которые привозят каждый день. Все блюда, приготовленные нашими поварами, получили максимальныые оценки критиков!
-                       Наше кафе работает уже на протяжении 10 лет, люди посетившие наше заведение остаются довольными и сытыми. <br> ТЕСНОТА - выбор гурманов!
-                    </p>
-                </div>
-            </div>
-            <div class="row d-flex about_flex">
-                <div class="col">
-                    <h3 class="about">Наши особенности</h3>
-                    <p class="lead">Наш шеф-повар получил премию "Лучший шеф-повар года". Зерна для нашего кофе поставляются исключительно из Колубии.
-                        Блюда приготовленные в нашем кафе имеют доступную цену.
-                        В честь праздников мы делаем притные бонусы и скидки.
-                    </p>
-                </div>
-                <div class="col">
-                        <img src="../images/original.jpeg" class="img-fluid" alt="">
-                </div>
-            </div>
-        </div>
-      </section>
-      
 
-      <footer>
+<div class="container">
+<h1 style="text-align: center; font-size: 50px; margin-bottom: 50px; margin-top: 50px;">Поиск по запросу: <?=$search?></h1>
+      <?
+      while($ser = $sql->fetch(PDO::FETCH_ASSOC)){
+        ?>
+        <div id="<?=$ser['type']?>" class="card bg-dark" style="width: 18rem;">
+          <img src="<?='/'.$ser['img']?>" height="220px" class="card-img-top" alt="...">
+          <div class="card-body card-style">
+            <h5 class="card-title"><?=$ser['name']?></h5>
+            <p class="card-text"><?=$ser['discription']?></p>
+            <div style="display: flex;justify-content: space-between;align-items: baseline;">
+              <p class="card-price"><?=$ser['price']?> ₽ / <?
+                if($ser['type'] == 'drinks'){
+                  echo 'за 100мл';
+                }else{
+                  echo 'за порцию';
+                }
+              ?></p>
+              <?
+                if($_SESSION['user']){
+                  ?><a href="../functions/add_basket.php?id=<?=$ser['id']?>" class="btn">В корзину</a><?
+                }
+              ?>
+              <?
+              if($_SESSION['admin']){
+                ?>
+                  <a href="../functions/del_menu.php?id=<?=$ser['id']?>"><img src="../images/delete.png" alt=""></a>
+                <?
+              }
+            ?>
+            </div>                
+          </div>
+        </div>
+      <?
+      }
+    ?>
+</div>
+
+<section class="menu">
+  <div class="container">   
+  <h1 style="text-align: center; font-size: 50px; margin-bottom: 50px">Меню</h1>
+    <div class="sort">
+      <div onclick="click4()" class="first-div-sort">
+        <p>Фильтры</p>
+        <img src="/images/filter.png" alt="">
+      </div>
+      <form action=""></form>
+      <form action="" method="POST">
+        <div>
+          <input onclick="dessert()" value="1" name="1" type="radio">
+          <label onclick="dessert()" for="des">Дессерты</label>
+        </div>
+        <div>
+          <input onclick="snacks()" value="2" name="1" type="radio">
+          <label onclick="snacks()" for="snac">Закуски</label>
+        </div>
+        <div>
+          <input onclick="drinks()" value="3" name="1" type="radio">
+          <label onclick="drinks()" for="dri">Напитки</label>
+        </div>
+        <div>
+          <input onclick="clear1()" value="4" name="1" type="radio">
+          <label onclick="clear1()" for="clear">Сбросить фильтры</label>
+        </div>
+        </form>
+    </div>
+    <div class="d-flex" style="flex-wrap: wrap; justify-content: space-evenly">
+      <?
+        require '../functions/connect.php';
+        $sql = $connect->query("SELECT * FROM `menu`");
+        while($row = $sql->fetch(PDO::FETCH_ASSOC)){
+          ?>
+            <div id="<?=$row['type']?>" class="card bg-dark" style="width: 18rem;">
+              <img src="<?='/'.$row['img']?>" height="220px" class="card-img-top" alt="...">
+              <div class="card-body card-style">
+                <h5 class="card-title"><?=$row['name']?></h5>
+                <p class="card-text"><?=$row['discription']?></p>
+                <div style="display: flex;justify-content: space-between;align-items: baseline;">
+                  <p class="card-price"><?=$row['price']?> ₽ / <?
+                    if($row['type'] == 'drinks'){
+                      echo 'за 100мл';
+                    }else{
+                      echo 'за порцию';
+                    }
+                  ?></p>
+                  <?
+                    if($_SESSION['user']){
+                      ?><a href="../functions/add_basket.php?id=<?=$row['id']?>" class="btn">В корзину</a><?
+                    }
+                  ?>
+                  <?
+                  if($_SESSION['admin']){
+                    ?>
+                      <a href="../functions/del_menu.php?id=<?=$row['id']?>"><img src="../images/delete.png" alt=""></a>
+                    <?
+                  }
+                ?>
+                </div>                
+              </div>
+            </div>
+          <?
+        }
+      ?>
+    </div>
+  </div>  
+</section>
+<footer>
       <nav class="navbar footer_navbar navbar-light bg-dark">
         <div class="container">
           <li>
@@ -258,9 +354,9 @@
         </div>
       </nav>
       </footer>
-
-      
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../js/sort.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 </body>
 </html>

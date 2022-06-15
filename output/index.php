@@ -37,9 +37,9 @@
                 <a class="nav-link" href="../output/about_us">О нас</a>
               </li>
             </ul>
-            <form class="d-flex">
-                <input class="form-control me-2 search" type="search" placeholder="Поиск" aria-label="Поиск">
-                <button class="btn" style="margin-right: 20px;" type="submit"><img src="../images/search.png" alt=""></button>
+            <form class="d-flex" action="../output/search_res" method="GET">
+                <input class="form-control me-2 search" style="width: 250px;" type="search" name="search" placeholder="Поиск" aria-label="Поиск">
+                <button class="btn" style="margin-right: 20px; margin-left: -10px;" type="submit"><img src="../images/search.png" alt=""></button>
             </form>
             <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModalToggle">
                 Войти
@@ -84,9 +84,9 @@
             <button type="button" class="btn btn_backet" data-bs-toggle="modal" style="border: none; background-color: transparent;" data-bs-target="#modalCART">
               <img src="../images/basket.png" alt="" class="backet">
             </button>
-            <form class="d-flex">
-                <input class="form-control me-2 search" type="search" placeholder="Поиск" aria-label="Поиск">
-                <button class="btn" style="margin-right: 20px;" type="submit"><img src="../images/search.png" alt=""></button>
+            <form class="d-flex" action="../output/search_res" method="GET">
+                <input class="form-control me-2 search" style="width: 250px;" type="search" name="search" placeholder="Поиск" aria-label="Поиск">
+                <button class="btn" style="margin-right: 20px; margin-left: -10px;" type="submit"><img src="../images/search.png" alt=""></button>
             </form>
           </div>
         </div>
@@ -224,7 +224,7 @@
             <div class="div-sec-1">
               <h1>Кафе "Теснота"</h1>
               <p class="lead">Лучше в тесноте с друзьями,<br> чем одному в просторе</p>
-              <a class="btn" href="./menu.php" role="button">Перейти к Меню →</a>
+              <a class="btn" href="./menu" role="button">Перейти к Меню →</a>
             </div>            
           </div>          
         </div>        

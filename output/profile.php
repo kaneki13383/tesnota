@@ -34,7 +34,7 @@ if (!$_SESSION['user']){
                     <a class="nav-link" href="./menu">Меню</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">О нас</a>
+                    <a class="nav-link" href="./about_us">О нас</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link active" href="#">Профиль</a>
@@ -43,9 +43,9 @@ if (!$_SESSION['user']){
                 <button type="button" class="btn btn_backet" data-bs-toggle="modal" style="border: none; background-color: transparent;" data-bs-target="#modalCART">
                     <img src="../images/basket.png" alt="" class="backet">
                 </button>
-                <form class="d-flex">
-                    <input class="form-control me-2 search" type="search" placeholder="Поиск" aria-label="Поиск">
-                    <button class="btn" style="margin-right: 20px;" type="submit"><img src="../images/search.png" alt=""></button>
+                <form class="d-flex" action="../output/search_res" method="GET">
+                    <input class="form-control me-2 search" style="width: 250px;" type="search" name="search" placeholder="Поиск" aria-label="Поиск">
+                    <button class="btn" style="margin-right: 20px; margin-left: -10px;" type="submit"><img src="../images/search.png" alt=""></button>
                 </form>
               </div>
             </div>
