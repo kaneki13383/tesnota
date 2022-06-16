@@ -173,6 +173,9 @@ form{
         margin-bottom: 3vh;
         margin-left: 1.5vh;
     }
+    .adaptive_fix{
+        margin-left: -15px;
+    }
 }
 .p_buskcet{
     position: absolute;

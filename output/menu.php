@@ -316,12 +316,13 @@ session_start();
                 <div class="card mb-3 bg-dark" style="max-width: 540px;">
                   <div class="row g-0">
                     <div class="col-md-4">
-                      <img src="<?='/'. $res['img']?>" class="img-fluid rounded-start" alt="...">
+                      <img src="<?='/'. $res['img']?>" style="height: 120px;" class="img-fluid rounded-start" alt="...">
                     </div>
                     <div class="col-md-8">
                       <div class="card-body">
-                        <h5 class="card-title"><?=$res['name']?></h5>
-                        <p class="card-text">Цена: <?=$summ = $res['price'] * $row['count']?> ₽</p>
+                        <h5 class="card-title" style="font-size: 17px;"><?=$res['name']?></h5>
+                        <div class="d-flex" style="justify-content: space-between;">
+                        <p class="card-text">Цена: <?=$summ = $res['price'] * $row['count']?> ₽</p>                        
                         <p class="card-text">Кол-во: <a href="<?
                           if($row['count'] == 1){
                             ?>
@@ -334,6 +335,7 @@ session_start();
                           }
                         ?>" style="text-decoration: none; color: white">-</a> <?=$row['count']?> <a href="../functions/plus_product.php?id=<?=$row['id_product']?>" style="text-decoration: none; color: white">+</a></p>
                         <a href="../functions/remove_basket.php?id=<?=$row['id_order']?>" class="card-text"><img src="../images/delete.png" alt=""></a>
+                        </div>
                       </div>
                     </div>
                   </div>

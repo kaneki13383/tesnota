@@ -57,7 +57,7 @@ if (!$_SESSION['admin']){
   <div class="profile-nav col-md-3">
       <div class="panel">
           <div class="user-heading round">
-              <a href="#">
+              <a href="#" class="adaptive_fix">
                   <img src="<?='/' . $_SESSION['admin']['avatar']?>" alt="">
               </a>
               <h1><?=$_SESSION['admin']['full_name']?></h1>
@@ -174,7 +174,7 @@ if (!$_SESSION['admin']){
             <form action="../functions/add_menu.php" method="post" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="formGroupExampleInput" class="form-label">Название блюда или напитка</label>
-                <input type="text" class="form-control" name="name" id="formGroupExampleInput" placeholder="">
+                <input type="text" class="form-control" name="name" id="formGroupExampleInput" pattern="^[А-Яа-яЁё\s]+$" maxlength="20" placeholder="">
             </div>
             <div class="mb-3">
                 <label for="formGroupExampleInput2" class="form-label">Фотография блюда или напитка</label>
@@ -182,7 +182,7 @@ if (!$_SESSION['admin']){
             </div>
             <div class="mb-3">
                 <label for="formGroupExampleInput2" class="form-label">Описание блюда</label>
-                <textarea type="text" class="form-control" name="discription" rows="6" id="formGroupExampleInput2" placeholder=""></textarea>
+                <textarea type="text" class="form-control" name="discription" rows="6" maxlength="40" id="formGroupExampleInput2" placeholder=""></textarea>
             </div>
             <div class="mb-3">
                 <label for="formGroupExampleInput" class="form-label">Стоимость</label>
