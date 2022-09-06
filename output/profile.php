@@ -13,7 +13,7 @@ if (!$_SESSION['user']){
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/profile.css">
-    <title>Профиль <?=$_SESSION['user']['login']?></title>
+    <title><?=$_SESSION['user']['full_name']?></title>
 </head>
 <body class="bg-dark">
 <header>
@@ -44,8 +44,8 @@ if (!$_SESSION['user']){
                     <img src="../images/basket.png" alt="" class="backet">
                 </button>
                 <form class="d-flex" action="../output/search_res" method="GET">
-                    <input class="form-control me-2 search" style="width: 250px;" type="search" name="search" placeholder="Поиск" aria-label="Поиск">
-                    <button class="btn" style="margin-right: 20px; margin-left: -10px;" type="submit"><img src="../images/search.png" alt=""></button>
+                    <input class="form-control me-2 search" style="width: 250px; border-right: none;" type="search" name="search" placeholder="Поиск" aria-label="Поиск">
+                    <button class="btn" style="margin-right: 20px; margin-left: -10px; border-left: none;" type="submit"><img src="../images/search.png" alt=""></button>
                 </form>
               </div>
             </div>

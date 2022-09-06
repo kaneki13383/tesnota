@@ -90,8 +90,8 @@ $sql = $connect->query("SELECT * FROM `menu` WHERE `name` LIKE '%$search%'");
               <img src="../images/basket.png" alt="" class="backet">
             </button>
             <form class="d-flex" action="" method="GET">
-                <input class="form-control me-2 search" style="width: 250px;" type="search" name="search" placeholder="Поиск" aria-label="Поиск">
-                <button class="btn" style="margin-right: 20px; margin-left: -10px;" type="submit"><img src="../images/search.png" alt=""></button>
+            <input class="form-control me-2 search" style="width: 250px; border-right: none;" type="search" name="search" placeholder="Поиск" aria-label="Поиск">
+                <button class="btn" style="margin-right: 20px; margin-left: -10px; border-left: none;" type="submit"><img src="../images/search.png" alt=""></button>
             </form>
           </div>
         </div>
@@ -235,7 +235,7 @@ $sql = $connect->query("SELECT * FROM `menu` WHERE `name` LIKE '%$search%'");
 
 
 <div class="container">
-<h1 style="text-align: center; font-size: 50px; margin-bottom: 50px; margin-top: 50px;">Поиск по запросу: <?=$search?></h1>
+<h1 style="text-align: center; font-size: 50px; margin-bottom: 50px; margin-top: 50px;">Поиск по запросу: <span style="color: #AF3131;"><?=$search?></span></h1>
       <?
       while($ser = $sql->fetch(PDO::FETCH_ASSOC)){
         ?>

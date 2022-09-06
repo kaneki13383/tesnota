@@ -44,9 +44,9 @@ if (!$_SESSION['admin']){
                     <img src="../images/basket.png" alt="" class="backet">
                 </button>
                 <form class="d-flex" action="../output/search_res" method="GET">
-                <input class="form-control me-2 search" style="width: 250px;" type="search" name="search" placeholder="Поиск" aria-label="Поиск">
-                <button class="btn" style="margin-right: 20px; margin-left: -10px;" type="submit"><img src="../images/search.png" alt=""></button>
-            </form>
+                    <input class="form-control me-2 search" style="width: 250px; border-right: none;" type="search" name="search" placeholder="Поиск" aria-label="Поиск">
+                    <button class="btn" style="margin-right: 20px; margin-left: -10px; border-left: none;" type="submit"><img src="../images/search.png" alt=""></button>
+                </form>
               </div>
             </div>
           </nav>
