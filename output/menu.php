@@ -236,7 +236,7 @@ session_start();
         <img src="/images/filter.png" alt="">
       </div>
       <form action=""></form>
-      <form action="" method="POST">
+      <form class="filter-menu" action="" method="POST">
         <div>
           <input onclick="dessert()" value="1" name="1" type="radio">
           <label onclick="dessert()" for="des">Дессерты</label>

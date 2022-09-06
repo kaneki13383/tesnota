@@ -67,3 +67,6 @@ h5{
     flex-direction: column;
     justify-content: space-evenly;
 }
+.filter-menu{
+    margin-bottom: 4vw;
+}
