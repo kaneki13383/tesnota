@@ -282,6 +282,7 @@ session_start();
                   <?
                   if($_SESSION['admin']){
                     ?>
+                      <a href="../functions/edit_menu.php?id=<?=$row['id']?>"><img src="../images/edit.png" alt=""></a>
                       <a href="../functions/del_menu.php?id=<?=$row['id']?>"><img src="../images/delete.png" alt=""></a>
                     <?
                   }

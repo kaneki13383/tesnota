@@ -58,7 +58,14 @@ if (!$_SESSION['admin']){
       <div class="panel">
           <div class="user-heading round">
               <a href="#" class="adaptive_fix">
-                  <img src="<?='/' . $_SESSION['admin']['avatar']?>" alt="">
+                  <img src="<?
+                                if($_SESSION['admin']['avatar'] === 'avatars/'){
+                                    echo '../images/noavatar.png';
+                                }
+                                else{
+                                    echo "/{$_SESSION['admin']['avatar']}";
+                                }
+                            ?>" alt="">
               </a>
               <h1><?=$_SESSION['admin']['full_name']?></h1>
               <p><?=$_SESSION['admin']['email']?></p>
@@ -178,7 +185,7 @@ if (!$_SESSION['admin']){
             </div>
             <div class="mb-3">
                 <label for="formGroupExampleInput2" class="form-label">Фотография блюда или напитка</label>
-                <input type="file" class="form-control" name="img" id="formGroupExampleInput2" placeholder="">
+                <input type="file" class="form-control" name="img" id="formGroupExampleInput2" placeholder="" accept=".png, .jpg, .jpeg">
             </div>
             <div class="mb-3">
                 <label for="formGroupExampleInput2" class="form-label">Описание блюда</label>
