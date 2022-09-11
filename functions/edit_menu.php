@@ -39,7 +39,7 @@
             <img src="<?=$img?>" alt="">
             <div class="mb-3">
                 <label for="formGroupExampleInput2" class="form-label">Описание блюда</label>
-                <textarea type="text" class="form-control" name="discription"  rows="6" id="formGroupExampleInput2"><?=$discription?></textarea>
+                <textarea type="text" class="form-control" name="discription" rows="6" id="formGroupExampleInput2"><?=$discription?></textarea>
             </div>
             <div class="mb-3">
                 <label for="formGroupExampleInput" class="form-label">Стоимость</label>

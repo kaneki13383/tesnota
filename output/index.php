@@ -178,7 +178,7 @@
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <label for="password_confirm" class="col-sm-2 col-form-label">Повторите пароль</label>
+                  <label for="password_confirm" class="col-sm-2 col-form-label">Повтори пароль</label>
                   <div class="col-sm-10">
                     <input type="password" name="password_confirm" required class="form-control" id="inputPasswordConfirm">
                   </div>

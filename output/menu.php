@@ -255,13 +255,13 @@ session_start();
         </div>
         </form>
     </div>
-    <div class="d-flex" style="flex-wrap: wrap; justify-content: space-evenly">
+    <div class="d-flex" style="flex-wrap: wrap;">
       <?
         require '../functions/connect.php';
         $sql = $connect->query("SELECT * FROM `menu`");
         while($row = $sql->fetch(PDO::FETCH_ASSOC)){
           ?>
-            <div id="<?=$row['type']?>" class="card bg-dark" style="width: 18rem;">
+            <div id="<?=$row['type']?>" class="card bg-dark" style="width: 18rem; margin-right: 1vw;">
               <img src="<?='/'.$row['img']?>" height="220px" class="card-img-top" alt="...">
               <div class="card-body card-style">
                 <h5 class="card-title"><?=$row['name']?></h5>
