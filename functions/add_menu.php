@@ -13,4 +13,4 @@ move_uploaded_file($_FILES['img']['tmp_name'], '../' . $img);
 
 $sql = $connect->query("INSERT INTO `menu` (`name`, `img`, `discription`, `price`, `type`) VALUES ('$name', '$img', '$discription', '$price', '$type')");
 $_SESSION['add_menu'] = 1;
-header("Location: ../output/admin");
+header("Location:" . $_SERVER['HTTP_REFERER']);

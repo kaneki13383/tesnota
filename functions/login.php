@@ -44,7 +44,7 @@
     else{
         $_SESSION['message'] = 'Невереный логин или пароль!';
         
-        header("Location: ../output/index");
+        header("Location:" . $_SERVER['HTTP_REFERER']);
         $_SESSION['error-login'] = 1;
     }
 ?>

@@ -332,6 +332,36 @@
 
       
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<?php
+      if($_SESSION['error-login'] === 1){
+    ?>
+        <script>
+          const modal = new bootstrap.Modal(document.querySelector('#exampleModalToggle'));
+          modal.show();
+        </script>
+        <?
+        $_SESSION['error-login'] = 0;
+      }
 
+      if ($_SESSION['error-registration'] === 1){
+        ?>
+        <script>
+          const modal = new bootstrap.Modal(document.querySelector('#exampleModalToggle2'));
+          modal.show();
+        </script>
+        <?
+        $_SESSION['error-registration'] = 0;
+      }
+
+      if ($_SESSION['error-remove'] === 1){
+        ?>
+        <script>
+          const modal = new bootstrap.Modal(document.querySelector('#modalCART'));
+          modal.show();
+        </script>
+        <?
+        $_SESSION['error-remove'] = 0;
+      }
+    ?>
 </body>
 </html>

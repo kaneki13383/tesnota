@@ -8,4 +8,5 @@
 
     $_SESSION['error-remove'] = 1;
 
-    header("Location: ../output/menu");
+    $link = $_SERVER['HTTP_REFERER'];
+    header('Location:' . $link);

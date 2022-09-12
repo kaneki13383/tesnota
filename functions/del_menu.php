@@ -7,4 +7,4 @@ $id = $_GET['id'];
 
 $sql = $connect->query("DELETE FROM menu WHERE `menu`.`id` = '$id'");
 
-header("Location: ../output/menu");
+header("Location:" . $_SERVER['HTTP_REFERER']);

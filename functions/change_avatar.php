@@ -7,7 +7,7 @@
 
     if (!move_uploaded_file($_FILES['avatar']['tmp_name'], "../" . $new_avatar)){
         $_SESSION['avatar-error'] = "Ошибка загрузки аватарки!";
-        header("Location: ../output/profile");
+        header("Location:" . $_SERVER['HTTP_REFERER']);
         $_SESSION['error'] = 1;
         exit();
     }
@@ -19,7 +19,7 @@
         $change_avatar = $connect->prepare("UPDATE `users` SET `avatar` = '$new_avatar' WHERE `id` = '$userID'");
         $change_avatar->execute();
         $_SESSION['user']['avatar'] = $new_avatar;
-        header("Location: ../output/profile");
+        header("Location:" . $_SERVER['HTTP_REFERER']);
         $_SESSION['error']= 1;
         $_SESSION['avatar-success'] = 'Аватар успешно изменен!';
     }
