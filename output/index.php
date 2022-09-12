@@ -81,9 +81,22 @@
                 ?>">Профиль</a>
               </li>
             </ul>
-            <button type="button" class="btn btn_backet" data-bs-toggle="modal" style="border: none; background-color: transparent;" data-bs-target="#modalCART">
-              <img src="../images/basket.png" alt="" class="backet">
-            </button>
+            <?php 
+              require '../functions/connect.php';
+              $id_user = $_SESSION['user']['id'];
+              $sql = $connect->query("SELECT `id_user` FROM `cart` WHERE `id_user` = '$id_user'");
+              $row = $sql->fetch(PDO::FETCH_ASSOC);                
+                if($row['id_user'] == $id_user){?>
+                  <button type="button" class="btn btn_backet" data-bs-toggle="modal" style="border: none; background-color: transparent;" data-bs-target="#modalCART">
+                    <img src="../images/Group 1 (1).png" alt="" class="backet">
+                  </button>
+                <?}
+                else{?>
+                  <button type="button" class="btn btn_backet" data-bs-toggle="modal" style="border: none; background-color: transparent;" data-bs-target="#modalCART">
+                    <img src="../images/basket.png" alt="" class="backet">
+                  </button>
+                <?}              
+            ?>            
             <form class="d-flex" action="../output/search_res" method="GET">
             <input class="form-control me-2 search" style="width: 250px; border-right: none;" type="search" name="search" placeholder="Поиск" aria-label="Поиск">
                 <button class="btn" style="margin-right: 20px; margin-left: -10px; border-left: none;" type="submit"><img src="../images/search.png" alt=""></button>
@@ -351,32 +364,44 @@
       </div>
       <div class="modal-body">
       <?
-          require '../functions/connect.php';
-          $id = $_SESSION['user']['id'];
-          $sql = $connect->query("SELECT * FROM `cart` WHERE `id_user` = '$id'");
-          while($row = $sql->fetch(PDO::FETCH_ASSOC)){
-            $id_product = $row['id_product'];
-            $sql2 = $connect->query("SELECT * FROM `menu` WHERE `id` = '$id_product'");
-              while($res = $sql2->fetch(PDO::FETCH_ASSOC)){
-                ?>
-                  <div class="card mb-3 bg-dark" style="max-width: 540px;">
-                    <div class="row g-0">
-                      <div class="col-md-4">
-                        <img src="<?='/'. $res['img']?>" class="img-fluid rounded-start" alt="...">
-                      </div>
-                      <div class="col-md-8">
-                        <div class="card-body">
-                          <h5 class="card-title"><?=$res['name']?></h5>
-                          <p class="card-text">Цена: <?=$res['price']?> ₽</p>
-                          <a href="../functions/remove_basket.php?id=<?=$row['id_order']?>" class="card-text" style="text-decoration: none; color: red;">Удалить из корзины</a>
-                          <!-- <p class="card-text"><small class="text-muted">Последнее обновление 3 мин. назад</small></p> -->
+        require '../functions/connect.php';
+        $id = $_SESSION['user']['id'];
+        $sql = $connect->query("SELECT * FROM `cart` WHERE `id_user` = '$id'");
+        while($row = $sql->fetch(PDO::FETCH_ASSOC)){
+          $id_product = $row['id_product'];
+          $sql2 = $connect->query("SELECT * FROM `menu` WHERE `id` = '$id_product'");
+            while($res = $sql2->fetch(PDO::FETCH_ASSOC)){                  
+              ?>
+                <div class="card mb-3 bg-dark" style="max-width: 540px;">
+                  <div class="row g-0">
+                    <div class="col-md-4">
+                      <img src="<?='/'. $res['img']?>" style="height: 120px;" class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h5 class="card-title" style="font-size: 17px;"><?=$res['name']?></h5>
+                        <div class="d-flex" style="justify-content: space-between;">
+                        <p class="card-text">Цена: <?=$summ = $res['price'] * $row['count']?> ₽</p>                        
+                        <p class="card-text">Кол-во: <a href="<?
+                          if($row['count'] == 1){
+                            ?>
+                              ../functions/remove_basket.php?id=<?=$row['id_order']?>
+                            <?
+                          } else{
+                            ?>
+                              ../functions/minus_product.php?id=<?=$row['id_product']?>
+                            <?
+                          }
+                        ?>" style="text-decoration: none; color: white">-</a> <?=$row['count']?> <a href="../functions/plus_product.php?id=<?=$row['id_product']?>" style="text-decoration: none; color: white">+</a></p>
+                        <a href="../functions/remove_basket.php?id=<?=$row['id_order']?>" class="card-text"><img src="../images/icons8-удалить-навсегда-64.png" width="30" alt=""></a>
                         </div>
                       </div>
                     </div>
                   </div>
-                <?
-              }
-          }                 
+                </div>
+              <?
+            }
+          }         
         ?>
         <p class="p_buskcet">Корзина пуста!</p>
       </div>

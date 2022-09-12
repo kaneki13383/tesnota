@@ -157,8 +157,6 @@ form{
 .footer_navbar{
     margin-top: 5vh;
 }
-
-
 .card{
     border: 1px #AF3131 solid;
 }
@@ -167,6 +165,7 @@ form{
 }
 .backet{
     margin-right: 2vw;
+    width: 50px;
 }
 @media (max-width: 991px) {
     .backet{

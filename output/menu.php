@@ -79,10 +79,22 @@ session_start();
                   }
                 ?>">Профиль</a>
               </li>
-            </ul>            
-            <button type="button" class="btn btn_backet" data-bs-toggle="modal" style="border: none; background-color: transparent;" data-bs-target="#modalCART">
-              <img src="../images/basket.png" alt="" class="backet">
-            </button>
+            </ul>  <?php 
+              require '../functions/connect.php';
+              $id_user = $_SESSION['user']['id'];
+              $sql = $connect->query("SELECT `id_user` FROM `cart` WHERE `id_user` = '$id_user'");
+              $row = $sql->fetch(PDO::FETCH_ASSOC);                
+                if($row['id_user'] == $id_user){?>
+                  <button type="button" class="btn btn_backet" data-bs-toggle="modal" style="border: none; background-color: transparent;" data-bs-target="#modalCART">
+                    <img src="../images/Group 1 (1).png" alt="" class="backet">
+                  </button>
+                <?}
+                else{?>
+                  <button type="button" class="btn btn_backet" data-bs-toggle="modal" style="border: none; background-color: transparent;" data-bs-target="#modalCART">
+                    <img src="../images/basket.png" alt="" class="backet">
+                  </button>
+                <?}              
+            ?>    
             <form class="d-flex" action="../output/search_res" method="GET">
             <input class="form-control me-2 search" style="width: 250px; border-right: none;" type="search" name="search" placeholder="Поиск" aria-label="Поиск">
                 <button class="btn" style="margin-right: 20px; margin-left: -10px; border-left: none;" type="submit"><img src="../images/search.png" alt=""></button>
@@ -339,7 +351,7 @@ session_start();
                             <?
                           }
                         ?>" style="text-decoration: none; color: white">-</a> <?=$row['count']?> <a href="../functions/plus_product.php?id=<?=$row['id_product']?>" style="text-decoration: none; color: white">+</a></p>
-                        <a href="../functions/remove_basket.php?id=<?=$row['id_order']?>" class="card-text"><img src="../images/delete.png" alt=""></a>
+                        <a href="../functions/remove_basket.php?id=<?=$row['id_order']?>" class="card-text"><img src="../images/icons8-удалить-навсегда-64.png" width="30" alt=""></a>
                         </div>
                       </div>
                     </div>
