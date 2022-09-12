@@ -35,6 +35,9 @@ h5{
 }
 .sort{
     color: white;
+    position: absolute;
+    margin-top: 7vh;
+    margin-left: 5vw;
 }
 .first-div-sort{
     display: flex;
@@ -129,18 +132,42 @@ hr{
     bottom: 10%;
     opacity: 1;
 }
+.card-price{
+    margin-bottom: 0.5vw;
+    margin-top: -1vw;
+}
+@media screen and (max-width: 1399px) {
+    .service-desc p{
+        font-size: 1vw;
+    }
+    .service-desc h4{
+        font-size: 1.6vw;
+    }
+    .service-desc img{
+        width: 25px;
+    }
+    hr{
+        margin: 5px auto;
+    }
+}
 @media screen and (max-width: 770px) {
     .single-service{
         flex-basis: 100%;
         margin-bottom: 30px;
     }
     .service-desc h4{
-        font-size: 14px;
+        font-size: 20px;
     }
     .service-desc p{
         font-size: 12px;
     }
     hr{
         margin: 5px auto;
+    }
+    .single-service:hover .service-desc{
+        bottom: 20% !important;
+    }
+    .service-desc img{
+        width: 30px;
     }
 }

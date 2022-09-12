@@ -263,8 +263,8 @@ $sql = $connect->query("SELECT * FROM `menu` WHERE `name` LIKE '%$search%'");
                   <?
                   if($_SESSION['admin']){
                     ?>
-                      <a href="../functions/edit_menu.php?id=<?=$ser['id']?>"><img src="../images/edit.png" alt=""></a>
-                      <a href="../functions/del_menu.php?id=<?=$ser['id']?>"><img src="../images/delete.png" alt=""></a>
+                      <a href="../functions/edit_menu.php?id=<?=$ser['id']?>"><img src="../images/icons8-edit-64.png" width="40" alt=""></a>
+                      <a href="../functions/del_menu.php?id=<?=$ser['id']?>"><img src="../images/icons8-удалить-навсегда-64.png" width="40" alt=""></a>
                     <?
                   }
                 ?>
@@ -276,11 +276,7 @@ $sql = $connect->query("SELECT * FROM `menu` WHERE `name` LIKE '%$search%'");
     </div>
   </section>
 </div>
-
-<section class="menu">
-  <div class="container">   
-  <h1 style="text-align: center; font-size: 50px; margin-bottom: 50px">Меню</h1>
-    <div class="sort">
+<div class="sort">
       <div onclick="click4()" class="first-div-sort">
         <p>Фильтры</p>
         <img src="/images/filter.png" alt="">
@@ -305,6 +301,10 @@ $sql = $connect->query("SELECT * FROM `menu` WHERE `name` LIKE '%$search%'");
         </div>
         </form>
     </div>
+<section class="menu">
+  <div class="container">   
+  <h1 style="text-align: center; font-size: 50px; margin-bottom: 50px">Меню</h1>
+    
     <section id="service">
         <div class="service-box">
       <?
@@ -334,8 +334,8 @@ $sql = $connect->query("SELECT * FROM `menu` WHERE `name` LIKE '%$search%'");
                   <?
                   if($_SESSION['admin']){
                     ?>
-                      <a href="../functions/edit_menu.php?id=<?=$row['id']?>"><img src="../images/edit.png" alt=""></a>
-                      <a href="../functions/del_menu.php?id=<?=$row['id']?>"><img src="../images/delete.png" alt=""></a>
+                      <a href="../functions/edit_menu.php?id=<?=$ser['id']?>"><img src="../images/icons8-edit-64.png" width="40" alt=""></a>
+                      <a href="../functions/del_menu.php?id=<?=$ser['id']?>"><img src="../images/icons8-удалить-навсегда-64.png" width="40" alt=""></a>
                     <?
                   }
                 ?>

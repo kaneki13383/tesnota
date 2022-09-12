@@ -227,10 +227,7 @@ session_start();
         </div>
       </div>
 
-<section class="menu">
-  <div class="container">   
-  <h1 style="text-align: center; font-size: 50px; margin-bottom: 50px">Меню</h1>
-    <div class="sort">
+      <div class="sort">
       <div onclick="click4()" class="first-div-sort">
         <p>Фильтры</p>
         <img src="/images/filter.png" alt="">
@@ -239,22 +236,27 @@ session_start();
       <form class="filter-menu" action="" method="POST">
         <div>
           <input onclick="dessert()" value="1" name="1" type="radio">
-          <label onclick="dessert()" for="des">Дессерты</label>
+          <label for="des">Дессерты</label>
         </div>
         <div>
           <input onclick="snacks()" value="2" name="1" type="radio">
-          <label onclick="snacks()" for="snac">Закуски</label>
+          <label  for="snac">Закуски</label>
         </div>
         <div>
           <input onclick="drinks()" value="3" name="1" type="radio">
-          <label onclick="drinks()" for="dri">Напитки</label>
+          <label  for="dri">Напитки</label>
         </div>
         <div>
           <input onclick="clear1()" value="4" name="1" type="radio">
-          <label onclick="clear1()" for="clear">Сбросить фильтры</label>
+          <label  for="clear">Сбросить фильтры</label>
         </div>
         </form>
     </div>
+
+<section class="menu">
+  <div class="container">   
+  <h1 style="text-align: center; font-size: 50px; margin-bottom: 50px">Меню</h1>
+    
     <section id="service">
         <div class="service-box">
       <?
@@ -268,7 +270,7 @@ session_start();
                 <div class="service-desc">
                     <h4><?=$row['name']?></h4>
                     <hr>
-                    <p><?=$row['discription']?></p>
+                    <p class="discription"><?=$row['discription']?></p>
                     <p class="card-price"><?=$row['price']?> ₽ / <?
                     if($row['type'] == 'drinks'){
                       echo 'за 100мл';
