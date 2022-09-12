@@ -263,7 +263,7 @@ session_start();
         while($row = $sql->fetch(PDO::FETCH_ASSOC)){
           ?>
           <div id="<?=$row['type']?>" class="single-service">
-                <img class="img-menu" src="<?='/'.$row['img']?>" alt="">
+                <img id="<?=$row['id']?>" class="img-menu" src="<?='/'.$row['img']?>" alt="">
                 <div class="overlay"></div>
                 <div class="service-desc">
                     <h4><?=$row['name']?></h4>
@@ -284,8 +284,8 @@ session_start();
                   <?
                   if($_SESSION['admin']){
                     ?>
-                      <a href="../functions/edit_menu.php?id=<?=$row['id']?>"><img src="../images/edit.png" alt=""></a>
-                      <a href="../functions/del_menu.php?id=<?=$row['id']?>"><img src="../images/delete.png" alt=""></a>
+                      <a href="../functions/edit_menu.php?id=<?=$row['id']?>"><img src="../images/icons8-edit-64.png" width="40" alt=""></a>
+                      <a href="../functions/del_menu.php?id=<?=$row['id']?>"><img src="../images/icons8-удалить-навсегда-64.png" width="40" alt=""></a>
                     <?
                   }
                 ?>

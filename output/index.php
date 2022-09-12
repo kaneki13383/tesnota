@@ -250,7 +250,7 @@
             while($row = $sql->fetch(PDO::FETCH_ASSOC)){
               ?>
                 <figure class="figure">
-                  <img src="<?='/'.$row['img']?>" style="width: 400px; height: 310px;" class="figure-img img-fluid rounded" alt="...">
+                  <a href="/output/menu.php#<?=$row['id']?>"><img src="<?='/'.$row['img']?>" style="width: 400px; height: 310px;" class="figure-img img-fluid rounded" alt="..."></a>
                   <figcaption class="figure-caption"><?=$row['name']?></figcaption>
                 </figure>
               <?
@@ -327,7 +327,7 @@
         </form>
       </section>
 
-      <footer>
+      <footer id="fo">
       <nav class="navbar footer_navbar navbar-light bg-dark">
         <div class="container">
           <li>
