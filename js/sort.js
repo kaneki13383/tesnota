@@ -1,4 +1,4 @@
-let havchik = document.querySelectorAll("#service");
+let havchik = document.querySelectorAll(".single-service");
 
 function snacks() {
     havchik.forEach(eat =>{

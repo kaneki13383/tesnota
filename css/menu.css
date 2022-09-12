@@ -68,7 +68,7 @@ h5{
     justify-content: space-evenly;
 }
 .filter-menu{
-    margin-bottom: 4vw;
+    margin-bottom: 1vw;
 }
 
 #service{
@@ -128,4 +128,19 @@ hr{
 .single-service:hover .service-desc{
     bottom: 10%;
     opacity: 1;
+}
+@media screen and (max-width: 770px) {
+    .single-service{
+        flex-basis: 100%;
+        margin-bottom: 30px;
+    }
+    .service-desc h4{
+        font-size: 14px;
+    }
+    .service-desc p{
+        font-size: 12px;
+    }
+    hr{
+        margin: 5px auto;
+    }
 }

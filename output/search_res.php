@@ -235,42 +235,46 @@ $sql = $connect->query("SELECT * FROM `menu` WHERE `name` LIKE '%$search%'");
 
 
 <div class="container">
+<section id="service">
+<div class="service-box">
 <h1 style="text-align: center; font-size: 50px; margin-bottom: 50px; margin-top: 50px;">Поиск по запросу: <span style="color: #AF3131;"><?=$search?></span></h1>
       <?
       while($ser = $sql->fetch(PDO::FETCH_ASSOC)){
         ?>
-        <div id="<?=$ser['type']?>" class="card bg-dark" style="width: 18rem;">
-          <img src="<?='/'.$ser['img']?>" height="220px" class="card-img-top" alt="...">
-          <div class="card-body card-style">
-            <h5 class="card-title"><?=$ser['name']?></h5>
-            <p class="card-text"><?=$ser['discription']?></p>
-            <div style="display: flex;justify-content: space-between;align-items: baseline;">
-              <p class="card-price"><?=$ser['price']?> ₽ / <?
-                if($ser['type'] == 'drinks'){
-                  echo 'за 100мл';
-                }else{
-                  echo 'за порцию';
-                }
-              ?></p>
-              <?
-                if($_SESSION['user']){
-                  ?><a href="../functions/add_basket.php?id=<?=$ser['id']?>" class="btn">В корзину</a><?
-                }
-              ?>
-              <?
-              if($_SESSION['admin']){
+        <div id="<?=$ser['type']?>" class="single-service">
+                <img class="img-menu" src="<?='/'.$ser['img']?>" alt="">
+                <div class="overlay"></div>
+                <div class="service-desc">
+                    <h4><?=$ser['name']?></h4>
+                    <hr>
+                    <p><?=$ser['discription']?></p>
+                    <p class="card-price"><?=$ser['price']?> ₽ / <?
+                    if($ser['type'] == 'drinks'){
+                      echo 'за 100мл';
+                    }else{
+                      echo 'за порцию';
+                    }
+                  ?></p>
+                  <?
+                    if($_SESSION['user']){
+                      ?><a href="../functions/add_basket.php?id=<?=$ser['id']?>" class="btn">В корзину</a><?
+                    }
+                  ?>
+                  <?
+                  if($_SESSION['admin']){
+                    ?>
+                      <a href="../functions/edit_menu.php?id=<?=$ser['id']?>"><img src="../images/edit.png" alt=""></a>
+                      <a href="../functions/del_menu.php?id=<?=$ser['id']?>"><img src="../images/delete.png" alt=""></a>
+                    <?
+                  }
                 ?>
-                  <a href="../functions/edit_menu.php?id=<?=$ser['id']?>"><img src="../images/edit.png" alt=""></a>
-                  <a href="../functions/del_menu.php?id=<?=$ser['id']?>"><img src="../images/delete.png" alt=""></a>
-                <?
-              }
-            ?>
-            </div>                
-          </div>
-        </div>
+                </div>
+            </div>
       <?
       }
     ?>
+    </div>
+  </section>
 </div>
 
 <section class="menu">
@@ -301,19 +305,21 @@ $sql = $connect->query("SELECT * FROM `menu` WHERE `name` LIKE '%$search%'");
         </div>
         </form>
     </div>
-    <div class="d-flex" style="flex-wrap: wrap;">
+    <section id="service">
+        <div class="service-box">
       <?
         require '../functions/connect.php';
         $sql = $connect->query("SELECT * FROM `menu`");
         while($row = $sql->fetch(PDO::FETCH_ASSOC)){
           ?>
-            <div id="<?=$row['type']?>" class="card bg-dark" style="width: 18rem; margin-right: 1vw;">
-              <img src="<?='/'.$row['img']?>" height="220px" class="card-img-top" alt="...">
-              <div class="card-body card-style">
-                <h5 class="card-title"><?=$row['name']?></h5>
-                <p class="card-text"><?=$row['discription']?></p>
-                <div style="display: flex;justify-content: space-between;align-items: baseline; ">
-                  <p class="card-price"><?=$row['price']?> ₽ / <?
+          <div id="<?=$row['type']?>" class="single-service">
+                <img class="img-menu" src="<?='/'.$row['img']?>" alt="">
+                <div class="overlay"></div>
+                <div class="service-desc">
+                    <h4><?=$row['name']?></h4>
+                    <hr>
+                    <p><?=$row['discription']?></p>
+                    <p class="card-price"><?=$row['price']?> ₽ / <?
                     if($row['type'] == 'drinks'){
                       echo 'за 100мл';
                     }else{
@@ -333,14 +339,14 @@ $sql = $connect->query("SELECT * FROM `menu` WHERE `name` LIKE '%$search%'");
                     <?
                   }
                 ?>
-                </div>                
-              </div>
+                </div>
             </div>
           <?
         }
-      ?>
+      ?> 
     </div>
-  </div>  
+    </div>
+  </section>
 </section>
 <footer>
       <nav class="navbar footer_navbar navbar-light bg-dark">
