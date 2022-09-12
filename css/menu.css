@@ -132,10 +132,6 @@ hr{
     bottom: 10%;
     opacity: 1;
 }
-.card-price{
-    margin-bottom: 0.5vw;
-    margin-top: -1vw;
-}
 @media screen and (max-width: 1399px) {
     .service-desc p{
         font-size: 1vw;
@@ -148,6 +144,10 @@ hr{
     }
     hr{
         margin: 5px auto;
+    }
+    .card-price{
+        margin-bottom: 0.5vw;
+        margin-top: -1vw;
     }
 }
 @media screen and (max-width: 770px) {
