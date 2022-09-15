@@ -276,13 +276,13 @@ session_start();
         $sql = $connect->query("SELECT * FROM `menu`");
         while($row = $sql->fetch(PDO::FETCH_ASSOC)){
           ?>
-          <div id="<?=$row['type']?>" class="single-service">
+          <a href="/output/full_discription_food.php?id=<?=$row['id']?>" style="text-decoration: none;"><div id="<?=$row['type']?>" class="single-service">
                 <img id="<?=$row['id']?>" class="img-menu" src="<?='/'.$row['img']?>" alt="">
                 <div class="overlay"></div>
                 <div class="service-desc">
-                    <h4><?=$row['name']?></h4>
+                    <h4 style="color: white;"><?=$row['name']?></h4>
                     <hr>
-                    <p class="discription"><?=$row['discription']?></p>
+                    <!-- <p class="discription"><?=$row['discription']?></p> -->
                     <p class="card-price"><?=$row['price']?> ₽ / <?
                     if($row['type'] == 'drinks'){
                       echo 'за 100мл';
@@ -309,7 +309,7 @@ session_start();
         }
       ?> 
     </div>
-    </div>
+    </div></a>
   </section>
   </section>
 

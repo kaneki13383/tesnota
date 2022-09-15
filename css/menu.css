@@ -129,7 +129,7 @@ hr{
     width: 60%;   
 }
 .single-service:hover .service-desc{
-    bottom: 10%;
+    bottom: 25%;
     opacity: 1;
 }
 @media screen and (max-width: 1399px) {

@@ -1,0 +1,9 @@
+@media screen and (max-width: 991px) {
+    .row{
+        display: flex;
+        flex-direction: column;
+    }
+    .col img{
+        width: 100%;
+    }
+}
