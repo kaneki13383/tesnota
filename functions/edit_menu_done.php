@@ -20,4 +20,4 @@ if($img == 'img_menu/'){
 }
 
 $sql = $connect->query("UPDATE `menu` SET `name` = '$name', `discription` = '$discription', `price` = '$price', `type` = '$type' WHERE `menu`.`id` = '$id'");
-header("Location:" . $_SERVER['HTTP_REFERER']);
+header("Location: ../output/full_discription_food.php?id=" . $id);

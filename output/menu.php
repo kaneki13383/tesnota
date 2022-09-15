@@ -276,7 +276,7 @@ session_start();
         $sql = $connect->query("SELECT * FROM `menu`");
         while($row = $sql->fetch(PDO::FETCH_ASSOC)){
           ?>
-          <a href="/output/full_discription_food.php?id=<?=$row['id']?>" style="text-decoration: none;"><div id="<?=$row['type']?>" class="single-service">
+          <a href="/output/full_discription_food?id=<?=$row['id']?>" style="text-decoration: none;"><div id="<?=$row['type']?>" class="single-service">
                 <img id="<?=$row['id']?>" class="img-menu" src="<?='/'.$row['img']?>" alt="">
                 <div class="overlay"></div>
                 <div class="service-desc">

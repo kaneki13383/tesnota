@@ -77,24 +77,39 @@
     <div class="container" >
         <div class="row">
             <div class="col">
-              <img src="/<?=$food['img']?>" width="540" alt="">
+              <div class="img-zoom-container">
+                <img id="myimage" src="/<?=$food['img']?>" width="540" alt="">            
+                <div id="myresult" class="img-zoom-result"></div>
+              </div>              
             </div>
             <div class="col">
               <h3 style="text-align: center; margin-top: 2vh;"><?=$food['name']?></h3>
               <hr style="background: #AF3131; height: 3px;">
-              <div style="display: flex;">
-                <div>
-                <p><?=$food['price']?> ₽ / <?
-                        if($food['type'] == 'drinks'){
-                        echo 'за 100мл';
-                        }else{
-                        echo 'за порцию';
-                        }
-                ?></p>
-                    <a href="../functions/add_basket.php?id=<?=$food['id']?>" class="btn">В корзину</a>
-                </div>
+              <div style="display: flex; flex-direction: column;">
                 <div style="margin: 0vw 2vw;">
                     <p><?=$food['discription']?></p>
+                </div>
+                <div style="text-align: center;">
+                <p><?=$food['price']?> ₽ / <?
+                        if($food['type'] == 'drinks'){
+                          echo 'за 100мл';
+                        }else{
+                          echo 'за порцию';
+                        }
+                ?></p>
+                     <?
+                    if($_SESSION['user']){
+                      ?><a href="../functions/add_basket.php?id=<?=$food['id']?>" class="btn">В корзину</a><?
+                    }
+                  ?>
+                  <?
+                  if($_SESSION['admin']){
+                    ?>
+                      <a href="../functions/edit_menu.php?id=<?=$food['id']?>"><img src="../images/icons8-edit-64.png" width="40" alt=""></a>
+                      <a href="../functions/del_menu.php?id=<?=$food['id']?>"><img src="../images/icons8-удалить-навсегда-64.png" width="40" alt=""></a>
+                    <?
+                  }
+                ?>    
                 </div>
               </div>
              
@@ -162,6 +177,11 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="../js/zoom.js"></script>
+<script>
+// Инициировать эффект масштабирования:
+imageZoom("myimage", "myresult");
+</script>
 <?php
       if($_SESSION['error-login'] === 1){
     ?>
