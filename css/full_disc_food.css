@@ -27,14 +27,14 @@
   }
   
   .img-zoom-result {
-    display: none;
+    opacity: 0;
     border: 1px solid #AF3131;
     /*установите размер результата div:*/
     width: 540px;
     height: 440px;
   }
   .img-zoom-container:hover .img-zoom-result{
-    display: block;
+    opacity: 1;
   }
   .img-zoom-container:hover .img-zoom-lens{
     opacity: 1;
