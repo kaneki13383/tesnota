@@ -77,7 +77,10 @@
     <div class="container" >
         <div class="row">
             <div class="col">
-              <img src="/<?=$food['img']?>" width="540" alt="">    
+              <div class="img-zoom-container">
+                <img id="myimage" src="/<?=$food['img']?>" width="540" alt="">            
+                <div id="myresult" class="img-zoom-result"></div>
+              </div>              
             </div>
             <div class="col">
               <h3 style="text-align: center; margin-top: 2vh;"><?=$food['name']?></h3>
@@ -108,9 +111,45 @@
                   }
                 ?>    
                 </div>
-              </div>
-             
+              </div>             
             </div>
+        </div>
+        <div class="comments">
+          <?php
+            require '../functions/connect.php';
+            $id_food = $food['id'];
+            $give_comm = $connect->query("SELECT * FROM `feedback_food` WHERE `id_food` = '$id_food'");
+            while($comm = $give_comm->fetch(PDO::FETCH_ASSOC)){
+              ?>  
+                <div class="card bg-dark" style="color: white; margin-top: 2vh;">
+                    <div class="card-header">
+                      <img src="/<?=$comm['avatar_user']?>" style="width: 50px; border-radius: 70px;" alt="">
+                        <?=$comm['name_user']?> 
+                    </div>
+                    <div class="card-body">
+                        <blockquote class="blockquote mb-0">
+                        <p><?=$comm['comment']?></p>
+                        <!-- <a href="../functions/delete_order.php?id=<?=$row['id']?>" class="btn">Удалить</a> -->
+                        </blockquote>
+                    </div>
+                    </div>
+                </div>
+              <?
+            }
+          ?>
+        </div>
+        <div class="comment_food container">
+        <h2>Оставить отзыв</h2>
+          <form class="row g-3" method="POST" action="../functions/comment_food.php">         
+            <input type="text" name="id_food" value="<?=$food['id']?>" style="display: none;"> 
+          <div class="col-12">
+            <label for="inputAddress2" class="form-label">Комментарий</label>
+            <textarea type="text" name="comment" class="form-control" style="height: 150px;" id="inputAddress2"></textarea>
+          </div>
+          <div class="col-12">
+            <button type="submit" style="width: 150px" class="btn ">Отправить</button>
+          </div>
+        </form>
         </div>
     </div>
 </section>
