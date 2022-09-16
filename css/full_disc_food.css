@@ -6,36 +6,4 @@
     .col #myimage{
         width: 100%;
     }
-    .img-zoom-result{
-        display: none;
-    }
-    .img-zoom-lens{
-        display: none;
-    }
 }
-.img-zoom-container {
-    position: relative;
-  }
-  
-  .img-zoom-lens {
-    opacity: 0;
-    position: absolute;
-    border: 1px solid #d4d4d4;
-    /*установите размер объектива:*/
-    width: 200px;
-    height: 200px;
-  }
-  
-  .img-zoom-result {
-    opacity: 0;
-    border: 1px solid #AF3131;
-    /*установите размер результата div:*/
-    width: 540px;
-    height: 440px;
-  }
-  .img-zoom-container:hover .img-zoom-result{
-    opacity: 1;
-  }
-  .img-zoom-container:hover .img-zoom-lens{
-    opacity: 1;
-  }
