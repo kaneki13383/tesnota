@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Сен 12 2022 г., 14:43
+-- Время создания: Сен 20 2022 г., 20:44
 -- Версия сервера: 8.0.24
 -- Версия PHP: 7.4.27
 
@@ -34,6 +34,13 @@ CREATE TABLE `cart` (
   `count` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Дамп данных таблицы `cart`
+--
+
+INSERT INTO `cart` (`id_order`, `id_user`, `id_product`, `count`) VALUES
+(42, 6, 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -58,6 +65,27 @@ INSERT INTO `feedback` (`id`, `name`, `surname`, `email`, `comment`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `feedback_food`
+--
+
+CREATE TABLE `feedback_food` (
+  `id` int NOT NULL,
+  `comment` varchar(200) DEFAULT NULL,
+  `name_user` varchar(200) DEFAULT NULL,
+  `avatar_user` varchar(200) DEFAULT NULL,
+  `id_food` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Дамп данных таблицы `feedback_food`
+--
+
+INSERT INTO `feedback_food` (`id`, `comment`, `name_user`, `avatar_user`, `id_food`) VALUES
+(1, 'Блюдо балдеж', 'kog', 'avatars/', 7);
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `menu`
 --
 
@@ -75,7 +103,7 @@ CREATE TABLE `menu` (
 --
 
 INSERT INTO `menu` (`id`, `name`, `img`, `discription`, `price`, `type`) VALUES
-(1, 'Баранья корейка в духовке', 'img_menu/d0b2d0bad183d181d0bdd18bd0b9-d180d0b5d186d0b5d0bfd182-d180d0b5d0b1d180d18bd188d0b5d0ba.jpg', 'Баранья корейка – спинная часть барана с мясом и ребрами, самая сочная часть баранины. Баранья корейка, как и любая баранина, богата витаминами В-группы, содержит витамин Е, а железа в ней на 30% больше, чем в свинине.', 600, 'dessert'),
+(1, 'Баранья корейка в духовке', 'img_menu/d0b2d0bad183d181d0bdd18bd0b9-d180d0b5d186d0b5d0bfd182-d180d0b5d0b1d180d18bd188d0b5d0ba.jpg', 'Баранья корейка – спинная часть барана с мясом и ребрами, самая сочная часть баранины. Баранья корейка, как и любая баранина, богата витаминами В-группы, содержит витамин Е, а железа в ней на 30% больше, чем в свинине.', 800, 'dessert'),
 (2, 'Тигровые креветки в томатном соусе', 'img_menu/23714-ed4_wide.jpg', 'Наверное, самым популярным рецептом приготовления креветок будет на сковороде в томатном соусе. Именно так приготовленные эти морепродукты можно встретить в каждом ресторанчике с морской тематикой. ', 850, 'dessert'),
 (3, 'Скумбрия в горячем маринаде', 'img_menu/149855-ed4_wide.png', 'Скумбрия, замаринованная горячим способом, готовится быстро и просто. Через несколько часов вы уже сможете подать закуску на стол. Рыба получается плотная, насыщенная ароматами специй.', 1500, 'snacks'),
 (4, 'Молочный коктейль с клубникой', 'img_menu/7475-ed4_wide.jpg', 'Этот восхитительный клубничный коктейль прекрасно освежает в летнюю жару. К тому же он очень полезный и питательный.', 150, 'drinks'),
@@ -125,6 +153,12 @@ ALTER TABLE `feedback`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `feedback_food`
+--
+ALTER TABLE `feedback_food`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `menu`
 --
 ALTER TABLE `menu`
@@ -144,12 +178,18 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id_order` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id_order` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT для таблицы `feedback`
 --
 ALTER TABLE `feedback`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `feedback_food`
+--
+ALTER TABLE `feedback_food`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
