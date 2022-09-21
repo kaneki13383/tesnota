@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Сен 20 2022 г., 20:44
+-- Время создания: Сен 21 2022 г., 16:29
 -- Версия сервера: 8.0.24
 -- Версия PHP: 7.4.27
 
@@ -39,7 +39,7 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id_order`, `id_user`, `id_product`, `count`) VALUES
-(42, 6, 1, 1);
+(46, 7, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -71,7 +71,7 @@ INSERT INTO `feedback` (`id`, `name`, `surname`, `email`, `comment`) VALUES
 CREATE TABLE `feedback_food` (
   `id` int NOT NULL,
   `comment` varchar(200) DEFAULT NULL,
-  `name_user` varchar(200) DEFAULT NULL,
+  `name_user` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `avatar_user` varchar(200) DEFAULT NULL,
   `id_food` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -81,7 +81,7 @@ CREATE TABLE `feedback_food` (
 --
 
 INSERT INTO `feedback_food` (`id`, `comment`, `name_user`, `avatar_user`, `id_food`) VALUES
-(1, 'Блюдо балдеж', 'kog', 'avatars/', 7);
+(6, 'Вроде норм', 'Куницын Олег Геннадьевич', 'avatars/1646081749Без имени.png', 1);
 
 -- --------------------------------------------------------
 
@@ -134,7 +134,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `full_name`, `login`, `email`, `password`, `avatar`, `adress`, `number`, `role`) VALUES
 (1, 'Куницын Даниил Олегович', 'kaneki13383', 'danchik.kun@mail.ru', '123', 'avatars/1652535945tgJqI8-J0dk.jpg', 'Ул Кубанская 17 дом 17 кв 107', '89673312786', 1),
-(6, 'Куницын Олег Геннадьевич', 'kog', 'k-o-g@mail.ru', '111', 'avatars/', 'Ул Кубанская 17 дом 17 кв 107', '89673312786', 0);
+(7, 'Куницын Олег Геннадьевич', 'kog', 'k-o-g@mail.ru', '111', 'avatars/1646081749Без имени.png', 'ул. Кубанская 17 дом 17 кв. 107', '89673312786', 0);
 
 --
 -- Индексы сохранённых таблиц
@@ -178,7 +178,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id_order` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id_order` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT для таблицы `feedback`
@@ -190,7 +190,7 @@ ALTER TABLE `feedback`
 -- AUTO_INCREMENT для таблицы `feedback_food`
 --
 ALTER TABLE `feedback_food`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT для таблицы `menu`
@@ -202,7 +202,7 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
