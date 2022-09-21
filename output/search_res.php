@@ -236,18 +236,18 @@ $sql = $connect->query("SELECT * FROM `menu` WHERE `name` LIKE '%$search%'");
 
 <div class="container">
 <section id="service">
-<div class="service-box">
+<div class="service-box_1">
 <h1 style="text-align: center; font-size: 50px; margin-bottom: 50px; margin-top: 50px;">Поиск по запросу: <span style="color: #AF3131;"><?=$search?></span></h1>
       <?
       while($ser = $sql->fetch(PDO::FETCH_ASSOC)){
         ?>
-        <div id="<?=$ser['type']?>" class="single-service">
+         <a href="/output/full_discription_food?id=<?=$ser['id']?>" style="text-decoration: none;"><div id="<?=$ser['type']?>" class="single-service">
                 <img class="img-menu" src="<?='/'.$ser['img']?>" alt="">
                 <div class="overlay"></div>
                 <div class="service-desc">
                     <h4><?=$ser['name']?></h4>
                     <hr>
-                    <p><?=$ser['discription']?></p>
+                    <!-- <p><?=$ser['discription']?></p> -->
                     <p class="card-price"><?=$ser['price']?> ₽ / <?
                     if($ser['type'] == 'drinks'){
                       echo 'за 100мл';
@@ -269,7 +269,7 @@ $sql = $connect->query("SELECT * FROM `menu` WHERE `name` LIKE '%$search%'");
                   }
                 ?>
                 </div>
-            </div>
+            </div></a>
       <?
       }
     ?>
@@ -312,13 +312,13 @@ $sql = $connect->query("SELECT * FROM `menu` WHERE `name` LIKE '%$search%'");
         $sql = $connect->query("SELECT * FROM `menu`");
         while($row = $sql->fetch(PDO::FETCH_ASSOC)){
           ?>
-          <div id="<?=$row['type']?>" class="single-service">
+           <a href="/output/full_discription_food?id=<?=$row['id']?>" style="text-decoration: none;"><div id="<?=$row['type']?>" class="single-service">
                 <img class="img-menu" src="<?='/'.$row['img']?>" alt="">
                 <div class="overlay"></div>
                 <div class="service-desc">
                     <h4><?=$row['name']?></h4>
                     <hr>
-                    <p><?=$row['discription']?></p>
+                    <!-- <p><?=$row['discription']?></p> -->
                     <p class="card-price"><?=$row['price']?> ₽ / <?
                     if($row['type'] == 'drinks'){
                       echo 'за 100мл';
@@ -340,7 +340,7 @@ $sql = $connect->query("SELECT * FROM `menu` WHERE `name` LIKE '%$search%'");
                   }
                 ?>
                 </div>
-            </div>
+            </div></a>
           <?
         }
       ?> 

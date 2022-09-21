@@ -15,6 +15,10 @@
         $avatar = 'avatars/' . $_FILES['avatar']['name'];
         move_uploaded_file($_FILES['avatar']['tmp_name'], '../' . $avatar);
 
+        if($avatar == 'avatars/'){
+            $avatar = 'images/no_avatar.webp';
+        }
+
         $check_login = $connect->query("SELECT * FROM `users` WHERE `login` = '$login'");
         $response = $check_login->fetch(PDO::FETCH_ASSOC);
         if ($response['login']){

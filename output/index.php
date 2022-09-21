@@ -8,8 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/style.css">
-    
+    <link rel="stylesheet" href="../css/style.css">    
     <title>Главная</title>
 </head>
 <body class="bg-dark" id="body">
@@ -263,7 +262,7 @@
             while($row = $sql->fetch(PDO::FETCH_ASSOC)){
               ?>
                 <figure class="figure">
-                  <a href="/output/menu.php#<?=$row['id']?>"><img src="<?='/'.$row['img']?>" style="width: 400px; height: 310px;" class="figure-img img-fluid rounded" alt="..."></a>
+                  <a href="/output/full_discription_food.php?id=<?=$row['id']?>"><img src="<?='/'.$row['img']?>" style="width: 400px; height: 310px;" class="figure-img img-fluid rounded" alt="..."></a>
                   <figcaption class="figure-caption"><?=$row['name']?></figcaption>
                 </figure>
               <?
