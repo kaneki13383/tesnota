@@ -347,21 +347,8 @@ $sql = $connect->query("SELECT * FROM `menu` WHERE `name` LIKE '%$search%'");
     </div>
     </div>
   </section>
-</section>
-<footer>
-      <nav class="navbar footer_navbar navbar-light bg-dark">
-        <div class="container">
-          <li>
-            <a class="navbar-brand" href="#"><img style="margin-bottom: 16px;" src="../images/logo.png" width="200px" alt=""></a>
-            <p class="lead">©Гавкошмыг corporation</p>
-          </li>
-          <li>
-            <p class="lead"><img src="../images/-.png" alt=""> 8 (967) 331 37-86</p>
-            <p class="lead"><img src="../images/mail.png" alt="">  danchik.kun@mail.ru</p>
-          </li>
-        </div>
-      </nav>
-      </footer>
+</section><?require'./details/cart.php'?>
+<?require'./details/footer.php'?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="../js/sort.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
